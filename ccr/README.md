@@ -1,4 +1,0 @@
-ccr
-===
-
-Celtic Camp Register
