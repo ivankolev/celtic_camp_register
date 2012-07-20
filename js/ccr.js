@@ -59,6 +59,8 @@ CCR = {
         });
     },
     initStep2Select:function(){
+        $("#step2 select").remove();
+
         var $step2div = $("#step2 div");
         $step2div.each(function(){
             var $selectid = $(this).attr("id") + "select";
@@ -88,7 +90,7 @@ CCR = {
                          if($(this).attr("selected")){
                              $(this).siblings().attr("selected", "selected");
                              $(this).removeAttr("selected");
-                         };
+                         }
                      }
                 })  ;
                 console.log($id);
@@ -125,7 +127,7 @@ CCR = {
 
 $(document).ready(function () {
     CCR.initSlider();
-    //CCR.initValidate();
+    CCR.initValidate();
     CCR.initStep1Events();
     CCR.initStep2Events();
 });
