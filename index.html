@@ -1,0 +1,284 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Register to Camp Celtic</title>
+    <link type="text/css" rel="Stylesheet" href="css/ccr.css"/>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.cycle.all.js"></script>
+    <script type="text/javascript" src="js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="js/ccr.js"></script>
+
+</head>
+<body>
+<form id="register_form" action="register" method="POST">
+<div id="register_instructions">
+    Please fill out the registration form entirely. Once we've received your child's registration information, we'll
+    send you an invoice email with payment options. If you'd like
+    to look at our fee schedule before filling out this form, please download our registration document by <a
+        href="/doc.pdf">clicking here</a>.
+</div>
+<div id="slider_container">
+<ul id="slider">
+<li class="step" id="step1"><span class="stepName">Camp Session</span><span class="stepCount">Step 1 of 6</span>
+    <div id="step1Section1">
+        <p>Please choose one camp session. Refer to the Camp Sessions chart to the right for dates and session duration.</p>
+        <h2>Summer Camp <span class="agegroup">Ages 7-15</span></h2>
+        <input class="startrow" type="checkbox" value="group1 session1"> <span>Session 1</span>
+        <input type="checkbox" value="group1 session2"><span>Session 2</span>
+        <input type="checkbox" value="group1 session3"><span>Session 3</span><br>
+        <input class="startrow" type="checkbox" value="group1 session4"> <span>Session 4</span>
+        <input type="checkbox" value="group1 session5"><span>Session 5</span>
+        <input type="checkbox" value="group1 session6"><span>Session 6</span>
+    </div>
+    <div id="step1Section2">
+        <h2>Leadership Camp <span class="agegroup">Ages 16-18</span></h2>
+        <input class="startrow" type="radio" name="step1group1" value="group2 session2"><span>Session 2</span>
+        <input type="radio" name="step1group1" value="group2 session3"> <span>Session 3</span><br>
+    </div>
+    <div id="step1Section3">
+        <h2>Sports Camp <span class="agegroup">Ages 13-18</span></h2><br>
+        Session 7: &nbsp;&nbsp;
+        <input class="startrow" type="radio" name="step1group1" value="group3 basketball"><span>Basketball</span>
+        <input type="radio" name="step1group1" value="group3 volleyball"><span>Volleyball</span><br><br>
+        <label for="step1group3CoachName">Coach's Name </label><input class="startrow" type="text" id="step1group3CoachName" name="step1group3CoachName"/>
+    </div>
+    <div id="step1Section4">
+        <h2>Kilarney Canoe Tripping <span class="agegroup">Ages 14-16</span></h2>
+        <input type="radio" name="step1group1" value="group4 session5session6"> Sessions 5 and 6<br>
+    </div>
+    <div id="step1Section5">
+        <h1>Bus Transportation</h1>
+        <div class="dottedBorder"></div>
+        <input type="radio" name="step1group2" value="group5 fromSession2">From Session 2<br>
+        <input type="radio" name="step1group2" value="group5 toSession3">To Session 3<br>
+        <input type="radio" name="step1group2" value="group5 fromSession7">From Session 7<br>
+    </div>
+
+</li>
+<li class="step" id="step2"><span class="stepName">Activities</span><span class="stepCount">Step 2 of 6</span>
+    <div id="step2session1">
+        <h1>SESSION ONE - <span id="session1dates">SUNDAY, JULY 1 - SATURDAY JULY 7</span></h1>
+
+        <h2>(CO-ED - AGES 7-15) CHOOSE THREE ACTIVITIES PLUS ONE AS AN ALTERNATE</h2>
+        <input type="checkbox" value="session1 sailing"> Sailing<br>
+        <input type="checkbox" value="session1 windsurfing"> Windsurfing<br>
+        <input type="checkbox" value="session1 kayaking"> Kayaking<br>
+        <input type="checkbox" value="session1 camp craft"> Camp Craft<br>
+        <input type="checkbox" value="session1 dance"> Dance<br>
+        <input type="checkbox" value="session1 fine arts"> Fine Arts<br>
+        <input type="checkbox" value="session1 theatre arts"> Theatre Arts<br>
+        <input type="checkbox" value="session1 radio broadcasting"> Radio Broadcasting<br>
+        <input type="checkbox" value="session1 archery"> Archery<br>
+        <input type="checkbox" value="session1 ropes and climbing"> Ropes and Climbing<br>
+        <input type="checkbox" value="session1 planet earth"> Planet Earth<br>
+        <input type="checkbox" value="session1 basketball"> Basketball<br>
+        <input type="checkbox" value="session1 rugby"> Rugby<br>
+        <input type="checkbox" value="session1 tennis"> Tennis<br>
+        <input type="checkbox" value="session1 soccer"> Soccer<br>
+        <input type="checkbox" value="session1 wilderness survival"> Wilderness Survival<br>
+    </div>
+    <div id="step2session2">
+        <h1>SESSION TWO - <span id="session2dates">SUNDAY, JULY 8 - TUESDAY JULY 17</span></h1>
+
+        <h2>(CO-ED - AGES 7-15) CHOOSE THREE ACTIVITIES PLUS ONE AS AN ALTERNATE</h2>
+        <input type="checkbox" value="session2 sailing"> Sailing<br>
+        <input type="checkbox" value="session2 windsurfing"> Windsurfing<br>
+        <input type="checkbox" value="session2 kayaking"> Kayaking<br>
+        <input type="checkbox" value="session2 camp craft"> Camp Craft<br>
+        <input type="checkbox" value="session2 dance"> Dance<br>
+        <input type="checkbox" value="session2 fine arts"> Fine Arts<br>
+        <input type="checkbox" value="session2 theatre arts"> Theatre Arts<br>
+        <input type="checkbox" value="session2 radio broadcasting"> Radio Broadcasting<br>
+        <input type="checkbox" value="session2 archery"> Archery<br>
+        <input type="checkbox" value="session2 ropes and climbing"> Ropes and Climbing<br>
+        <input type="checkbox" value="session2 planet earth"> Planet Earth<br>
+        <input type="checkbox" value="session2 basketball"> Basketball<br>
+        <input type="checkbox" value="session2 rugby"> Rugby<br>
+        <input type="checkbox" value="session2 tennis"> Tennis<br>
+        <input type="checkbox" value="session2 soccer"> Soccer<br>
+        <input type="checkbox" value="session2 out-tripping"> Out-tripping<br>
+    </div>
+    <div id="step2session3">
+        <h1>SESSION THREE - <span id="session3dates">THURSDAY, JULY 19 - SATURDAY JULY 28</span></h1>
+
+        <h2>(CO-ED - AGES 7-15) CHOOSE THREE ACTIVITIES PLUS ONE AS AN ALTERNATE</h2>
+        <input type="checkbox" value="session3 sailing"> Sailing<br>
+        <input type="checkbox" value="session3 windsurfing"> Windsurfing<br>
+        <input type="checkbox" value="session3 kayaking"> Kayaking<br>
+        <input type="checkbox" value="session3 canoeing"> Canoeing<br>
+        <input type="checkbox" value="session3 camp craft"> Camp Craft<br>
+        <input type="checkbox" value="session3 dance"> Dance<br>
+        <input type="checkbox" value="session3 fine arts"> Fine Arts<br>
+        <input type="checkbox" value="session3 theatre arts"> Theatre Arts<br>
+        <input type="checkbox" value="session3 radio broadcasting"> Radio Broadcasting<br>
+        <input type="checkbox" value="session3 archery"> Archery<br>
+        <input type="checkbox" value="session3 ropes and climbing"> Ropes and Climbing<br>
+        <input type="checkbox" value="session3 planet earth"> Planet Earth<br>
+        <input type="checkbox" value="session3 basketball"> Basketball<br>
+        <input type="checkbox" value="session3 rugby"> Rugby<br>
+        <input type="checkbox" value="session3 tennis"> Tennis<br>
+        <input type="checkbox" value="session3 soccer"> Soccer<br>
+        <input type="checkbox" value="session3 out-tripping"> Out-tripping<br>
+    </div>
+    <div id="step2session4">
+        <h1>SESSION FOUR - <span id="session4dates">SUNDAY, JULY 29 - SATURDAY AUGUST 4</span></h1>
+
+        <h2>(CO-ED - AGES 7-15) CHOOSE THREE ACTIVITIES PLUS ONE AS AN ALTERNATE</h2>
+        <input type="checkbox" value="session4 sailing"> Sailing<br>
+        <input type="checkbox" value="session4 windsurfing"> Windsurfing<br>
+        <input type="checkbox" value="session4 kayaking"> Kayaking<br>
+        <input type="checkbox" value="session4 canoeing"> Canoeing<br>
+        <input type="checkbox" value="session4 camp craft"> Camp Craft<br>
+        <input type="checkbox" value="session4 dance"> Dance<br>
+        <input type="checkbox" value="session4 fine arts"> Fine Arts<br>
+        <input type="checkbox" value="session4 theatre arts"> Theatre Arts<br>
+        <input type="checkbox" value="session4 radio broadcasting"> Radio Broadcasting<br>
+        <input type="checkbox" value="session4 archery"> Archery<br>
+        <input type="checkbox" value="session4 ropes and climbing"> Ropes and Climbing<br>
+        <input type="checkbox" value="session4 planet earth"> Planet Earth<br>
+        <input type="checkbox" value="session4 basketball"> Basketball<br>
+        <input type="checkbox" value="session4 rugby"> Rugby<br>
+        <input type="checkbox" value="session4 tennis"> Tennis<br>
+        <input type="checkbox" value="session4 soccer"> Soccer<br>
+        <input type="checkbox" value="session4 volleyball"> Volleyball<br>
+    </div>
+    <div id="step2session5">
+        <h1>SESSION FIVE - <span id="session5dates">SUNDAY, AUGUST 5 - SATURDAY AUGUST 11</span></h1>
+
+        <h2>(CO-ED - AGES 7-15) CHOOSE THREE ACTIVITIES PLUS ONE AS AN ALTERNATE</h2>
+        <input type="checkbox" value="session5 sailing"> Sailing
+        <input type="checkbox" value="session5 windsurfing"> Windsurfing
+        <input type="checkbox" value="session5 kayaking"> Kayaking<br>
+        <input type="checkbox" value="session5 camp craft"> Camp Craft
+        <input type="checkbox" value="session5 dance"> Dance
+        <input type="checkbox" value="session5 fine arts"> Fine Arts<br>
+        <input type="checkbox" value="session5 theatre arts"> Theatre Arts
+        <input type="checkbox" value="session5 radio broadcasting"> Radio Broadcasting
+        <input type="checkbox" value="session5 archery"> Archery
+        <input type="checkbox" value="session5 ropes and climbing"> Ropes and Climbing<br>
+        <input type="checkbox" value="session5 planet earth"> Planet Earth
+        <input type="checkbox" value="session5 basketball"> Basketball
+        <input type="checkbox" value="session5 rugby"> Rugby<br>
+        <input type="checkbox" value="session5 soccer"> Soccer
+        <input type="checkbox" value="session5 volleyball"> Volleyball
+        <input type="checkbox" value="session5 wilderness survival"> Wilderness Survival<br>
+    </div>
+    <div id="step2session6">
+        <h1>SESSION SIX - <span id="session6dates">SUNDAY, AUGUST 12 - SATURDAY AUGUST 18</span></h1>
+
+        <h2>(CO-ED - AGES 7-15) CHOOSE THREE ACTIVITIES PLUS ONE AS AN ALTERNATE</h2>
+        <input type="checkbox" value="session6 sailing"> Sailing<br>
+        <input type="checkbox" value="session6 windsurfing"> Windsurfing<br>
+        <input type="checkbox" value="session6 kayaking"> Kayaking<br>
+        <input type="checkbox" value="session6 camp craft"> Camp Craft<br>
+        <input type="checkbox" value="session6 dance"> Dance<br>
+        <input type="checkbox" value="session6 fine arts"> Fine Arts<br>
+        <input type="checkbox" value="session6 theatre arts"> Theatre Arts<br>
+        <input type="checkbox" value="session6 radio broadcasting"> Radio Broadcasting<br>
+        <input type="checkbox" value="session6 archery"> Archery<br>
+        <input type="checkbox" value="session6 ropes and climbing"> Ropes and Climbing<br>
+        <input type="checkbox" value="session6 planet earth"> Planet Earth<br>
+        <input type="checkbox" value="session6 basketball"> Basketball<br>
+        <input type="checkbox" value="session6 rugby"> Rugby<br>
+        <input type="checkbox" value="session6 soccer"> Soccer<br>
+        <input type="checkbox" value="session6 volleyball"> Volleyball<br>
+        <input type="checkbox" value="session6 wilderness survival"> Wilderness Survival<br>
+    </div>
+
+
+</li>
+<li class="step" id="step3"><span class="stepName">Camper Information</span><span class="stepCount">Step 3 of 6</span><br>
+    <label for="step3FirstName">First Name</label>
+    <input type="text" name="step3FirstName" id="step3FirstName">
+    <label for="step3LastName">Last Name</label>
+    <input type="text" name="step3LastName" id="step3LastName">
+    <input type="radio" name="step3group1">Male
+    <input type="radio" name="step3group1">Female
+    <br>
+    <label for="step3DateOfBirth">Date of Birth (dd/mm/yyyy)</label>
+    <input type="text" name="step3DateOfBirth" id="step3DateOfBirth">
+    <br>
+    <label for="step3Address1">Address</label><br>
+    <input type="text" name="step3Address1" id="step3Address1"> <br>
+    <input type="text" name="step3Address2" id="step3Address2"> <br>
+    <label for="step3City">City</label>
+    <label for="step3Province">Province</label>
+    <label for="step3PostalCode">Postal Code</label><br>
+    <input type="text" name="step3City" id="step3City">
+
+    <input type="text" name="step3Province" id="step3Province">
+
+    <input type="text" name="step3PostalCode" id="step3PostalCode"><br>
+    <label for="step3SchoolAttended">School Attended</label>
+    <input type="text" name="step3SchoolAttended" id="step3SchoolAttended">
+    <label for="step3CabinMateRequested">Cabin Mate Requested (1 only)</label>
+    <input type="text" name="step3CabinMateRequested" id="step3CabinMateRequested">
+</li>
+<li class="step" id="step4"><span class="stepName">Health Information</span><span class="stepCount">Step 4 of 6</span><br>
+    <label for="step4FamilyDoctor">Family Doctor</label>
+    <input type="text" name="step4FamilyDoctor" id="step4FamilyDoctor">
+    <label for="step4FamilyDoctorTelephone">Telephone</label>
+    <input type="text" name="step4FamilyDoctorTelephone" id="step4FamilyDoctorTelephone">
+    <label for="step4HealthCard#">Health Card #</label>
+    <input type="text" name="step4HealthCard#" id="step4HealthCard#">
+    <label for="step4DateOfLastTetanusShot">Date of Last Tetanus Shot</label>
+    <input type="text" name="step4DateOfLastTetanusShot" id="step4DateOfLastTetanusShot">
+    <label for="step4MedicalHistory">Medical History</label>
+    <textarea name="step4MedicalHistory" id="step4MedicalHistory"></textarea>
+    <label for="step4AllergiesPhysicalDisabilities">Allergies, Physical Disabilities</label>
+    <textarea name="step4AllergiesPhysicalDisabilities" id="step4AllergiesPhysicalDisabilities"></textarea>
+    <label for="step4MedicationsTaken">Medications Taken (to be dispensed by Camp Nurse)</label>
+    <input type="text" name="step4MedicationsTaken" id="step4MedicationsTaken">
+
+
+</li>
+<li class="step" id="step5"><span class="stepName">Parent/Guardian Information</span><span class="stepCount">Step 5 of 6</span><br>
+    <label for="step5FirstName1">First Name</label>
+    <input type="text" name="step5FirstName1" id="step5FirstName1">
+    <label for="step5LastName1">Last Name</label>
+    <input type="text" name="step5LastName1" id="step5LastName1">
+    <label for="step5HomeTelephone1">Home Telephone</label>
+    <input type="text" name="step5HomeTelephone1" id="step5HomeTelephone1">
+    <label for="step5AlternateTelephone1">Alternate Telephone</label>
+    <input type="text" name="step5AlternateTelephone1" id="step5AlternateTelephone1">
+    <label for="step5Email1">Email</label>
+    <input type="text" name="step5Email1" id="step5Email1">
+    <label for="step5FirstName2">First Name</label>
+    <input type="text" name="step5FirstName2" id="step5FirstName2">
+    <label for="step5LastName2">Last Name</label>
+    <input type="text" name="step5LastName2" id="step5LastName2">
+    <label for="step5HomeTelephone2">Home Telephone</label>
+    <input type="text" name="step5HomeTelephone2" id="step5HomeTelephone2">
+    <label for="step5AlternateTelephone2">Alternate Telephone</label>
+    <input type="text" name="step5AlternateTelephone2" id="step5AlternateTelephone2">
+    <label for="step5Email2">Email</label>
+    <input type="text" name="step5Email2" id="step5Email2">
+    <label for="step5AdditionalInfo">Additional Information/Instructions</label>
+    <textarea name="step5AdditionalInfo" id="step5AdditionalInfo"></textarea>
+    <label for="step5HowDidYouHear">How did you hear about Celtic?</label>
+    <textarea name="step5HowDidYouHear" id="step5HowDidYouHear"></textarea>
+    <input type="radio" name="step5agree" id="step5Agree">
+    <label for="step5Agree">I have read and agree to the <a href="#" target="_blank">terms and conditions</a></label>
+</li>
+<li class="step" id="step6">Confirmation</span><span class="stepCount">Step 6 of 6</span>
+    <input type="submit" name="submit" id="submit">
+</li>
+<li class="step" id="step7">
+    <h1>Thank you for Registering!</h1>
+
+    <p>Check your inbox for a confirmation email indicating that we've received your registration form. Within a few
+        days
+        we'll send you an invoice email along with all the information you need to ensure your child's experience at
+        Camp Celtic
+        will be the best it can be.<br><br><br>
+        See you soon!
+    </p>
+</li>
+</ul>
+
+</div>
+<div id="controls"><a href="#" id="prev">prev</a>&nbsp;<a href="#" id="next">next</a></div>
+
+</form>
+</body>
+</html>
