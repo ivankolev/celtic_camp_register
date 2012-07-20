@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9e72c05-affc-4176-bf6d-304785cb666b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/jquery.validate.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/ccr.js" afterPath="$PROJECT_DIR$/js/ccr.js" />
     </list>
     <ignored path="ccr.iws" />
@@ -63,19 +61,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ccr.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="ccr.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/ccr.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="92" column="26" selection-start="3758" selection-end="3758" vertical-scroll-proportion="0.0">
+            <state line="39" column="26" selection-start="1322" selection-end="1322" vertical-scroll-proportion="0.28125">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="262" column="34" selection-start="16653" selection-end="16653" vertical-scroll-proportion="0.8007246">
+            <state line="247" column="12" selection-start="15627" selection-end="15627" vertical-scroll-proportion="-9.041667">
               <folding />
             </state>
           </provider>
@@ -114,8 +112,8 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/js/ccr.js" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/js/ccr.js" />
       </list>
     </option>
   </component>
@@ -260,7 +258,7 @@
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
   </component>
-  <component name="PublishConfig" serverName="www.phaseshiftlab.com" serverId="c355ab69-331a-4d8b-b5c5-346541d5b83e" uploadOnCheckin="c355ab69-331a-4d8b-b5c5-346541d5b83e" autoUpload="true">
+  <component name="PublishConfig" serverName="www.phaseshiftlab.com" serverId="c355ab69-331a-4d8b-b5c5-346541d5b83e" uploadOnCheckin="c355ab69-331a-4d8b-b5c5-346541d5b83e">
     <servers>
       <server id="537aec2c-658d-48f7-8813-4d26479d9dbd">
         <serverdata>
@@ -451,7 +449,11 @@
       <created>1342752499995</created>
       <updated>1342752499995</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="small fixes to the markup">
+      <created>1342759205108</created>
+      <updated>1342759205108</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -521,7 +523,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="empty commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed bug in step 2 display sections" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -537,6 +539,8 @@
     <MESSAGE value="delete bogus files" />
     <MESSAGE value="add 2 buttons" />
     <MESSAGE value="empty commit" />
+    <MESSAGE value="small fixes to the markup" />
+    <MESSAGE value="fixed bug in step 2 display sections" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -545,13 +549,6 @@
     <entry file="file://$PROJECT_DIR$/css/ccr.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="156" column="28" selection-start="3241" selection-end="3241" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/ccr.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="92" column="26" selection-start="3758" selection-end="3758" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -565,7 +562,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="262" column="34" selection-start="16653" selection-end="16653" vertical-scroll-proportion="0.8007246">
+        <state line="247" column="12" selection-start="15627" selection-end="15627" vertical-scroll-proportion="-9.041667">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/ccr.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="26" selection-start="1322" selection-end="1322" vertical-scroll-proportion="0.28125">
           <folding />
         </state>
       </provider>

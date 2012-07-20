@@ -36,6 +36,7 @@ CCR = {
         });
     },
     initStep2Display: function () {
+        $("#step2 div").css("display", "none");
         $("input:checkbox:checked").each(function(){
             console.log($(this).attr("value"));
             if($(this).attr("value") == "group1 session1"){
