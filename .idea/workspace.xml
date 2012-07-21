@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a9e72c05-affc-4176-bf6d-304785cb666b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/ccr.css" afterPath="$PROJECT_DIR$/css/ccr.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/ccr.js" afterPath="$PROJECT_DIR$/js/ccr.js" />
     </list>
     <ignored path="ccr.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -60,19 +63,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ccr.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ccr.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/ccr.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="26" selection-start="1322" selection-end="1322" vertical-scroll-proportion="0.28125">
+            <state line="18" column="47" selection-start="491" selection-end="491" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="247" column="12" selection-start="15627" selection-end="15627" vertical-scroll-proportion="-9.041667">
+            <state line="217" column="36" selection-start="14396" selection-end="14396" vertical-scroll-proportion="0.73550725">
               <folding />
             </state>
           </provider>
@@ -90,7 +93,7 @@
       <file leaf-file-name="ccr.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/ccr.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="156" column="28" selection-start="3241" selection-end="3241" vertical-scroll-proportion="0.0">
+            <state line="167" column="35" selection-start="3548" selection-end="3548" vertical-scroll-proportion="-7.2">
               <folding />
             </state>
           </provider>
@@ -111,8 +114,9 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/ccr.js" />
+        <option value="$PROJECT_DIR$/css/ccr.css" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -257,7 +261,7 @@
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
   </component>
-  <component name="PublishConfig" serverName="www.phaseshiftlab.com" serverId="c355ab69-331a-4d8b-b5c5-346541d5b83e" uploadOnCheckin="c355ab69-331a-4d8b-b5c5-346541d5b83e">
+  <component name="PublishConfig" serverName="www.phaseshiftlab.com" serverId="c355ab69-331a-4d8b-b5c5-346541d5b83e" uploadOnCheckin="c355ab69-331a-4d8b-b5c5-346541d5b83e" autoUpload="true">
     <servers>
       <server id="537aec2c-658d-48f7-8813-4d26479d9dbd">
         <serverdata>
@@ -456,16 +460,20 @@
       <created>1342759484432</created>
       <updated>1342759484432</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="fixed bug in step 2 display sections">
+      <created>1342823618943</created>
+      <updated>1342823618943</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3080357" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.071428575" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32924107" sideWeight="0.8292423" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.8292423" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -473,7 +481,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
@@ -549,9 +557,16 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/js/ccr.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="47" selection-start="491" selection-end="491" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/css/ccr.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="156" column="28" selection-start="3241" selection-end="3241" vertical-scroll-proportion="0.0">
+        <state line="167" column="35" selection-start="3548" selection-end="3548" vertical-scroll-proportion="-7.2">
           <folding />
         </state>
       </provider>
@@ -565,14 +580,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="247" column="12" selection-start="15627" selection-end="15627" vertical-scroll-proportion="-9.041667">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/ccr.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="26" selection-start="1322" selection-end="1322" vertical-scroll-proportion="0.28125">
+        <state line="217" column="36" selection-start="14396" selection-end="14396" vertical-scroll-proportion="0.73550725">
           <folding />
         </state>
       </provider>

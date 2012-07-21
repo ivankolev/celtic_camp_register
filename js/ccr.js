@@ -12,7 +12,13 @@ CCR = {
     },
     onAfter: function (curr, next, opts, fwd) {
       console.log(next.id);
-      if(next.id == "step2"){
+      if(next.id === "step1"){
+          $("#prev").css("visibility", "hidden");
+      }
+      else{
+          $("#prev").css("visibility", "visible");
+      }
+      if(next.id === "step2"){
           CCR.initStep2Display();
           CCR.initStep2Select();
       }

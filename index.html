@@ -7,7 +7,6 @@
     <script type="text/javascript" src="js/jquery.cycle.all.js"></script>
     <script type="text/javascript" src="js/jquery.validate.min.js"></script>
     <script type="text/javascript" src="js/ccr.js"></script>
-
 </head>
 <body>
 <form id="register_form" action="register" method="POST">
@@ -44,16 +43,19 @@
     </div>
     <div id="step1Section4">
         <h2>Kilarney Canoe Tripping <span class="agegroup">Ages 14-16</span></h2>
-        <input type="radio" name="step1group1" value="group4 session5session6"> Sessions 5 and 6<br>
+        <input type="radio" name="step1group1" value="group4 session5session6"> <span>Sessions 5 and 6</span><br>
+        <p>Please refer to the <a href="#">Killarney Canoe Tripping page</a> for all information and requirements.</p>
     </div>
     <div id="step1Section5">
         <h1>Bus Transportation</h1>
         <div class="dottedBorder"></div>
-        <input type="radio" name="step1group2" value="group5 fromSession2">From Session 2<br>
-        <input type="radio" name="step1group2" value="group5 toSession3">To Session 3<br>
-        <input type="radio" name="step1group2" value="group5 fromSession7">From Session 7<br>
+        <p>Camp Celtic will provide free one-way bus transportation to/from Guelph and Woodstock at the end of Session 2,
+            the start of Session 3, and the end of Session 7. To see dates, times and maps,
+            please refer to the <a href="#">Register page</a>.</p>
+        <input class="startrow" type="checkbox" name="step1group2" value="group5 fromSession2"><span>From Session 2</span>
+        <input type="checkbox" name="step1group2" value="group5 toSession3"><span>To Session 3</span>
+        <input type="checkbox" name="step1group2" value="group5 fromSession7"><span>From Session 7</span>
     </div>
-
 </li>
 <li class="step" id="step2"><span class="stepName">Activities</span><span class="stepCount">Step 2 of 6</span>
     <div id="step2session1">
@@ -188,33 +190,32 @@
 
 </li>
 <li class="step" id="step3"><span class="stepName">Camper Information</span><span class="stepCount">Step 3 of 6</span><br>
-    <label for="step3FirstName">First Name</label>
-    <input type="text" name="step3FirstName" id="step3FirstName">
-    <label for="step3LastName">Last Name</label>
+    <div class="dottedBorder"></div>
+    <label style="padding-right: 110px" for="step3FirstName">First Name</label><label for="step3LastName">Last Name</label> <br/>
+    <input class="startrow" type="text" name="step3FirstName" id="step3FirstName">
     <input type="text" name="step3LastName" id="step3LastName">
     <input type="radio" name="step3group1">Male
     <input type="radio" name="step3group1">Female
     <br>
-    <label for="step3DateOfBirth">Date of Birth (dd/mm/yyyy)</label>
-    <input type="text" name="step3DateOfBirth" id="step3DateOfBirth">
+    <label for="step3DateOfBirth">Date of Birth (dd/mm/yyyy)</label> <br/>
+    <input class="startrow" type="text" name="step3DateOfBirth" id="step3DateOfBirth">
     <br>
     <label for="step3Address1">Address</label><br>
-    <input type="text" name="step3Address1" id="step3Address1"> <br>
-    <input type="text" name="step3Address2" id="step3Address2"> <br>
-    <label for="step3City">City</label>
-    <label for="step3Province">Province</label>
+    <input class="startrow" type="text" name="step3Address1" id="step3Address1"> <br>
+    <input class="startrow" type="text" name="step3Address2" id="step3Address2"> <br>
+    <label style="padding-right: 150px" for="step3City">City</label>
+    <label style="padding-right: 120px" for="step3Province">Province</label>
     <label for="step3PostalCode">Postal Code</label><br>
-    <input type="text" name="step3City" id="step3City">
-
+    <input class="startrow" type="text" name="step3City" id="step3City">
     <input type="text" name="step3Province" id="step3Province">
-
     <input type="text" name="step3PostalCode" id="step3PostalCode"><br>
-    <label for="step3SchoolAttended">School Attended</label>
-    <input type="text" name="step3SchoolAttended" id="step3SchoolAttended">
-    <label for="step3CabinMateRequested">Cabin Mate Requested (1 only)</label>
+    <label style="padding-right: 80px" for="step3SchoolAttended">School Attended</label>
+    <label for="step3CabinMateRequested">Cabin Mate Requested (1 only)</label><br/>
+    <input class="startrow" type="text" name="step3SchoolAttended" id="step3SchoolAttended">
     <input type="text" name="step3CabinMateRequested" id="step3CabinMateRequested">
 </li>
 <li class="step" id="step4"><span class="stepName">Health Information</span><span class="stepCount">Step 4 of 6</span><br>
+    <div class="dottedBorder"></div>
     <label for="step4FamilyDoctor">Family Doctor</label>
     <input type="text" name="step4FamilyDoctor" id="step4FamilyDoctor">
     <label for="step4FamilyDoctorTelephone">Telephone</label>
