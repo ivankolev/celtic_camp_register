@@ -211,13 +211,18 @@ input.startrow {
 #step4MedicationsTaken {
     width:600px;
 }
-#errors span {
-    font-size: 1.1em;
+#errors {
+     display: none;
+}
+#errorsList {
+    display: none;
 }
 #step1Section5 {
     display: none;
 }
 .warning-box {
+    padding: 15px 15px 20px 50px;
+    font-size: 1.2em;
     background: #FFF2BF url(../assets/warning_icon.png) no-repeat 10px 15px;
     border: 1px solid #D7C993;
     color: #A48200;

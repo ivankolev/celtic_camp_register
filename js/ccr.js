@@ -11,32 +11,36 @@ CCR = {
             before:CCR.onBefore
         });
     },
-    initNavigation: function (){
-        $("#prev").on("click",function(){
-           $("#slider").cycle("prev");
+    initNavigation:function () {
+        $("#prev").on("click", function () {
+            $("#slider").cycle("prev");
         });
-        $("#next").on("click", function(){
+        $("#next").on("click", function () {
             var currentStep;
-            $(".step").each(function(){if($(this).css("display") !== "none"){ currentStep = $(this).attr("id")}});
+            $(".step").each(function () {
+                if ($(this).css("display") !== "none") {
+                    currentStep = $(this).attr("id")
+                }
+            });
             var stepIsValid = CCR.validateStep(currentStep);
-            if(stepIsValid){
+            if (stepIsValid) {
                 $("#slider").cycle("next");
             }
         });
 
     },
-    validateStep: function(step){
-      var result = false;
-      if(step === "step1"){
-          result = CCR.validateStep1();
-      }
-      else if(step === "step2"){
-          result = CCR.validateStep2();
-      }
-      else if(step === "step3"){
-          result = CCR.validateStep3();
-      }
-      return result;
+    validateStep:function (step) {
+        var result = false;
+        if (step === "step1") {
+            result = CCR.validateStep1();
+        }
+        else if (step === "step2") {
+            result = CCR.validateStep2();
+        }
+        else if (step === "step3") {
+            result = CCR.validateStep3();
+        }
+        return result;
     },
     onAfter:function (curr, next, opts, fwd) {
         console.log("After going to" + next.id);
@@ -54,71 +58,75 @@ CCR = {
         $(this).parent().animate({height:$ht, speed:50});
     },
     onBefore:function (curr, next, opts, fwd) {
-          console.log("Before going to" + next.id);
+        console.log("Before going to" + next.id);
     },
-    validateStep1: function(){
+    validateStep1:function () {
         var isSessionSelected = $("#step1Section1 input:checked").length +
             $("#step1Section2 input:checked").length +
             $("#step1Section3 input:checked").length +
             $("#step1Section4 input:checked").length;
-        if(!isSessionSelected){
-            $("#errors").html("");
-            $("#errors").append("<span>Please select at least one session above!</span>");
+        if (!isSessionSelected) {
+            CCR.displayErrors("Please select at least one session above!");
             return false;
         }
-        else if($("#step1Section3 input:checked").length && ($("#step1group3CoachName").val().length === 0) ){
-            $("#errors").html("");
-            $("#errors").append("<span>Please enter Coach's Name</span>");
+        else if ($("#step1Section3 input:checked").length && ($("#step1group3CoachName").val().length === 0)) {
+            CCR.displayErrors("Please enter Coach's Name");
             return false;
         }
-        else{
-            $("#errors").html("");
+        else {
+            CCR.hideErrors();
             return true;
         }
     },
-    validateStep2: function(){
+    validateStep2:function () {
         var activitiesDisplayed = false;
         var sessionsDisplayed = 0;
-        $("#step2 div").each(function(){
-            if($(this).css("display") !== "none"){
+        $("#step2 div").each(function () {
+            if ($(this).css("display") !== "none") {
                 activitiesDisplayed = true;
                 sessionsDisplayed++;
             }
         });
-        if(activitiesDisplayed){
+        if (activitiesDisplayed) {
             var numActivities = $("#step2 input:checked").length;
-            if(numActivities === 0 || numActivities !==  sessionsDisplayed*3){
-                $("#errors").html("");
-                $("#errors").
-                    append("<span>" +
-                    "Please choose three activities per session plus an alternate activity for each session!" +
-                    "</span>");
-                    return false;
+            if (numActivities === 0 || numActivities !== sessionsDisplayed * 3) {
+                CCR.displayErrors("Please choose three activities per session plus an alternate activity for each session!")
+                return false;
             }
-            else{
-                $("#errors").html("");
+            else {
+                CCR.hideErrors();
                 return true;
             }
         }
         return true;
     },
-    validateStep3: function(){
-          if(CCR.v.form()){
-              return true;
-          }
-          else{
-              return false;
-          }
+    validateStep3:function () {
+        if (CCR.v.form()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    },
+    displayErrors:function (errorMessage) {
+        $("#errors").css("display", "block");
+        $("#errors").html("");
+        $("#errors").append(errorMessage);
+    },
+    hideErrors:function () {
+        $("#errors").html("");
+        $("#errors").css("display", "none");
     },
     initStep1Events:function () {
         $("input:checkbox[name=step1group1]").change(function () {
             $("input:checkbox").each(function () {
                 if ($(this).attr("checked")) {
                     $("#step1").find("input:radio[name=step1group1]").removeAttr("checked");
-                    $("#step1Section5").fadeOut(250, function(){
+                    $("#step1Section5").fadeOut(250, function () {
                         var $ht = $("#step1").height();
                         $("#step1").parent().animate({height:$ht, speed:50});
                     });
+                    CCR.hideErrors();
                 }
             });
         });
@@ -127,15 +135,16 @@ CCR = {
                 $("#step1").find("input:radio[name=step1group1]").removeAttr("checked");
                 $("#step1").find("input:checkbox[name=step1group1]").removeAttr("checked");
                 $(this).attr("checked", "checked");
+                CCR.hideErrors();
             }
-            if($(this).val().match(/session2|session3|basketball|volleyball/)){
-                $("#step1Section5").fadeIn(300, function(){
+            if ($(this).val().match(/session2|session3|basketball|volleyball/)) {
+                $("#step1Section5").fadeIn(300, function () {
                     var $ht = $("#step1").height();
                     $("#step1").parent().animate({height:$ht, speed:50});
                 });
             }
             else {
-                $("#step1Section5").fadeOut(250, function(){
+                $("#step1Section5").fadeOut(250, function () {
                     var $ht = $("#step1").height();
                     $("#step1").parent().animate({height:$ht, speed:50});
                 });
@@ -225,6 +234,14 @@ CCR = {
         });
     },
     initValidate:function () {
+        jQuery.validator.setDefaults({
+            errorPlacement: function(error, element) {
+                error.appendTo("#errorsList");
+            },
+            errorContainer: "#errorsList",
+            errorLabelContainer: "#errorsList",
+            wrapper: "li"
+        });
         CCR.v = $("#register_form").validate({
             rules:{
             }

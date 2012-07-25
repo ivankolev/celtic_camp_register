@@ -205,8 +205,8 @@
     <div class="dottedBorder"></div>
     <label style="padding-right: 160px" for="step3FirstName">First Name</label><label for="step3LastName">Last
         Name</label> <br/>
-    <input class="startrow required" type="text" name="step3FirstName" id="step3FirstName">
-    <input type="text" name="step3LastName" id="step3LastName">
+    <input class="startrow required" type="text" name="step3FirstName" id="step3FirstName" title="First Name is required">
+    <input class="required" type="text" name="step3LastName" id="step3LastName" title="Last Name is required">
     <input type="radio" name="step3group1">Male
     <input type="radio" name="step3group1">Female
     <br>
@@ -315,6 +315,7 @@
 
 </div>
 <div id="errors" class="warning-box"></div>
+<ul  id="errorsList" class="warning-box"></ul>
 <div id="controls">
     <a href="javascript:void(0);" id="prev"><img src="assets/ccr_back.jpg"/> </a>
     <a href="javascript:void(0);" id="next"><img src="assets/ccr_next.jpg"/> </a>
