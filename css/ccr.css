@@ -64,7 +64,7 @@ a {
 }
 #prev {float:left;}
 #prev img {display: block;}
-#next {float: right;}
+#next, #nextDisabled {float: right;}
 #next img { display: block;}
 #register_form {
     margin-left: 115px;
@@ -210,4 +210,15 @@ input.startrow {
 }
 #step4MedicationsTaken {
     width:600px;
+}
+#errors span {
+    font-size: 1.1em;
+}
+#step1Section5 {
+    display: none;
+}
+.warning-box {
+    background: #FFF2BF url(../assets/warning_icon.png) no-repeat 10px 15px;
+    border: 1px solid #D7C993;
+    color: #A48200;
 }

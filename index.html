@@ -19,15 +19,18 @@
 <div id="slider_container">
 <ul id="slider">
 <li class="step" id="step1"><span class="stepName">Camp Session</span><span class="stepCount">Step 1 of 6</span>
+
     <div id="step1Section1">
-        <p>Please choose one camp session. Refer to the Camp Sessions chart to the right for dates and session duration.</p>
+        <p>Please choose one camp session. Refer to the Camp Sessions chart to the right for dates and session
+            duration.</p>
+
         <h2>Summer Camp <span class="agegroup">Ages 7-15</span></h2>
-        <input class="startrow" type="checkbox" value="group1 session1"> <span>Session 1</span>
-        <input type="checkbox" value="group1 session2"><span>Session 2</span>
-        <input type="checkbox" value="group1 session3"><span>Session 3</span><br>
-        <input class="startrow" type="checkbox" value="group1 session4"> <span>Session 4</span>
-        <input type="checkbox" value="group1 session5"><span>Session 5</span>
-        <input type="checkbox" value="group1 session6"><span>Session 6</span>
+        <input class="startrow" type="checkbox" value="group1 session1" name="step1group1"> <span>Session 1</span>
+        <input type="checkbox" value="group1 session2" name="step1group1"><span>Session 2</span>
+        <input type="checkbox" value="group1 session3" name="step1group1"><span>Session 3</span><br>
+        <input class="startrow" type="checkbox" value="group1 session4" name="step1group1"> <span>Session 4</span>
+        <input type="checkbox" value="group1 session5" name="step1group1"><span>Session 5</span>
+        <input type="checkbox" value="group1 session6" name="step1group1"><span>Session 6</span>
     </div>
     <div id="step1Section2">
         <h2>Leadership Camp <span class="agegroup">Ages 16-18</span></h2>
@@ -39,25 +42,32 @@
         Session 7: &nbsp;&nbsp;
         <input class="startrow" type="radio" name="step1group1" value="group3 basketball"><span>Basketball</span>
         <input type="radio" name="step1group1" value="group3 volleyball"><span>Volleyball</span><br><br>
-        <label for="step1group3CoachName">Coach's Name </label><input class="startrow" type="text" id="step1group3CoachName" name="step1group3CoachName"/>
+        <label for="step1group3CoachName">Coach's Name </label><input class="startrow" type="text"
+                                                                      id="step1group3CoachName"
+                                                                      name="step1group3CoachName"/>
     </div>
     <div id="step1Section4">
         <h2>Kilarney Canoe Tripping <span class="agegroup">Ages 14-16</span></h2>
         <input type="radio" name="step1group1" value="group4 session5session6"> <span>Sessions 5 and 6</span><br>
+
         <p>Please refer to the <a href="#">Killarney Canoe Tripping page</a> for all information and requirements.</p>
     </div>
     <div id="step1Section5">
         <h1>Bus Transportation</h1>
+
         <div class="dottedBorder"></div>
-        <p>Camp Celtic will provide free one-way bus transportation to/from Guelph and Woodstock at the end of Session 2,
+        <p>Camp Celtic will provide free one-way bus transportation to/from Guelph and Woodstock at the end of Session
+            2,
             the start of Session 3, and the end of Session 7. To see dates, times and maps,
             please refer to the <a href="#">Register page</a>.</p>
-        <input class="startrow" type="checkbox" name="step1group2" value="group5 fromSession2"><span>From Session 2</span>
+        <input class="startrow" type="checkbox" name="step1group2"
+               value="group5 fromSession2"><span>From Session 2</span>
         <input type="checkbox" name="step1group2" value="group5 toSession3"><span>To Session 3</span>
         <input type="checkbox" name="step1group2" value="group5 fromSession7"><span>From Session 7</span>
     </div>
 </li>
 <li class="step" id="step2"><span class="stepName">Activities</span><span class="stepCount">Step 2 of 6</span>
+
     <div id="step2session1">
         <h1>SESSION ONE - <span id="session1dates">SUNDAY, JULY 1 - SATURDAY JULY 7</span></h1>
 
@@ -189,10 +199,13 @@
 
 
 </li>
-<li class="step" id="step3"><span class="stepName">Camper Information</span><span class="stepCount">Step 3 of 6</span><br>
+<li class="step" id="step3"><span class="stepName">Camper Information</span><span
+        class="stepCount">Step 3 of 6</span><br>
+
     <div class="dottedBorder"></div>
-    <label style="padding-right: 160px" for="step3FirstName">First Name</label><label for="step3LastName">Last Name</label> <br/>
-    <input class="startrow" type="text" name="step3FirstName" id="step3FirstName">
+    <label style="padding-right: 160px" for="step3FirstName">First Name</label><label for="step3LastName">Last
+        Name</label> <br/>
+    <input class="startrow required" type="text" name="step3FirstName" id="step3FirstName">
     <input type="text" name="step3LastName" id="step3LastName">
     <input type="radio" name="step3group1">Male
     <input type="radio" name="step3group1">Female
@@ -214,13 +227,16 @@
     <input class="startrow" type="text" name="step3SchoolAttended" id="step3SchoolAttended">
     <input type="text" name="step3CabinMateRequested" id="step3CabinMateRequested">
 </li>
-<li class="step" id="step4"><span class="stepName">Health Information</span><span class="stepCount">Step 4 of 6</span><br>
+<li class="step" id="step4"><span class="stepName">Health Information</span><span
+        class="stepCount">Step 4 of 6</span><br>
+
     <div class="dottedBorder"></div>
     <label style="padding-right: 142px" for="step4FamilyDoctor">Family Doctor</label>
     <label for="step4FamilyDoctorTelephone">Telephone</label>
     <br/>
     <input class="startrow" type="text" name="step4FamilyDoctor" id="step4FamilyDoctor">
     <input type="text" name="step4FamilyDoctorTelephone" id="step4FamilyDoctorTelephone">
+
     <div class="solidBorder"></div>
     <label style="padding-right: 142px" for="step4HealthCard#">Health Card #</label>
     <label for="step4DateOfLastTetanusShot">Date of Last Tetanus Shot</label>
@@ -237,7 +253,9 @@
     <label for="step4MedicationsTaken">Medications Taken (to be dispensed by Camp Nurse)</label>
     <input class="startrow" type="text" name="step4MedicationsTaken" id="step4MedicationsTaken">
 </li>
-<li class="step" id="step5"><span class="stepName">Parent/Guardian Information</span><span class="stepCount">Step 5 of 6</span><br>
+<li class="step" id="step5"><span class="stepName">Parent/Guardian Information</span><span
+        class="stepCount">Step 5 of 6</span><br>
+
     <div class="dottedBorder"></div>
     <label style="padding-right: 142px" for="step5FirstName1">First Name(s)</label>
     <label for="step5LastName1">Last Name</label>
@@ -252,7 +270,9 @@
     <input class="startrow" type="text" name="step5HomeTelephone1" id="step5HomeTelephone1">
     <input type="text" name="step5AlternateTelephone1" id="step5AlternateTelephone1">
     <input type="text" name="step5Email1" id="step5Email1">
+
     <p>We will use the Email address entered above for corresponding with you about your child's registration.</p>
+
     <div class="solidBorder"></div>
     <label style="padding-right: 156px;" for="step5FirstName2">First Name</label>
     <label for="step5LastName2">Last Name</label>
@@ -294,7 +314,11 @@
 </ul>
 
 </div>
-<div id="controls"><a href="#" id="prev"><img src="assets/ccr_back.jpg"/> </a><a href="#" id="next"><img src="assets/ccr_next.jpg"/> </a></div>
+<div id="errors" class="warning-box"></div>
+<div id="controls">
+    <a href="javascript:void(0);" id="prev"><img src="assets/ccr_back.jpg"/> </a>
+    <a href="javascript:void(0);" id="next"><img src="assets/ccr_next.jpg"/> </a>
+</div>
 
 </form>
 </body>
