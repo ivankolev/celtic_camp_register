@@ -244,8 +244,48 @@ CCR = {
         });
         CCR.v = $("#register_form").validate({
             rules:{
+                step3group1: {
+                  required:true
+                },
+                step3DateOfBirth: {
+                    required: true,
+                    dateITA: true
+                },
+                step3Province: {
+                    required: true,
+                    pattern: CCR.regexProvince
+                },
+                step3PostalCode: {
+                    required:true,
+                    pattern: CCR.regexPostalCode
+                }
+            },
+            messages: {
+                step3group1: {
+                  required:"Please specify Male or Female"
+                },
+                step3DateOfBirth: {
+                    required: "Date of Birth is required",
+                    dateITA: "Date of Birth should be in dd/mm/yyyy format"
+                },
+                step3Province: {
+                    required: "Province is required",
+                    pattern: "Please enter a valid province name or abbreviation"
+                },
+                step3PostalCode: {
+                    required: "Postal Code is required",
+                    pattern: "Please enter a valid Postal Code"
+                }
             }
         });
+    },
+    initRegexPatterns: function(){
+        CCR.regexProvince = new RegExp("AB|ALB|Alta|alberta|BC|CB|British Columbia|LB|Labrador|MB|Man|Manitoba|" +
+            "N[BLTSU]|Nfld|NF|Newfoundland|NWT|Northwest Territories|Nova Scotia|New Brunswick|Nunavut|ON|ONT|" +
+            "Ontario|PE|PEI|IPE|Prince Edward Island|QC|PC|QUE|QU|Quebec|SK|Sask|Saskatchewan|YT|Yukon|" +
+            "Yukon Territories");
+        CCR.regexPostalCode = new RegExp("^(([ABCEGHJKLMNPRSTVXY]|[abceghjklmnprstvxy])\\d([ABCEGHJKLMNPRSTVWXYZ]|" +
+            "[abceghjklmnprstvwxyz])(\\s|)\\d([ABCEGHJKLMNPRSTVWXYZ]|[abceghjklmnprstvwxyz])\\d)$");
     }
 };
 
@@ -253,6 +293,7 @@ CCR = {
 $(document).ready(function () {
     CCR.initSlider();
     CCR.initNavigation();
+    CCR.initRegexPatterns();
     CCR.initValidate();
     CCR.initStep1Events();
     CCR.initStep2Events();

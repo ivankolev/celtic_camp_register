@@ -6,6 +6,7 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="js/jquery.cycle.all.js"></script>
     <script type="text/javascript" src="js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="js/additional-methods.min.js"></script>
     <script type="text/javascript" src="js/ccr.js"></script>
 </head>
 <body>
@@ -214,17 +215,17 @@
     <input class="startrow" type="text" name="step3DateOfBirth" id="step3DateOfBirth">
     <br>
     <label for="step3Address1">Address</label><br>
-    <input class="startrow" type="text" name="step3Address1" id="step3Address1"> <br>
+    <input class="startrow required" type="text" name="step3Address1" id="step3Address1" title="Address is required"> <br>
     <input class="startrow" type="text" name="step3Address2" id="step3Address2"> <br>
     <label style="padding-right: 160px" for="step3City">City</label>
     <label style="padding-right: 128px" for="step3Province">Province</label>
     <label for="step3PostalCode">Postal Code</label><br>
-    <input class="startrow" type="text" name="step3City" id="step3City">
-    <input type="text" name="step3Province" id="step3Province">
+    <input class="startrow required" type="text" name="step3City" id="step3City" title="City is required">
+    <input class="required" type="text" name="step3Province" id="step3Province" title="Province is required">
     <input type="text" name="step3PostalCode" id="step3PostalCode"><br>
-    <label style="padding-right: 128px" for="step3SchoolAttended">School Attended</label>
+    <label  style="padding-right: 128px" for="step3SchoolAttended">School Attended</label>
     <label for="step3CabinMateRequested">Cabin Mate Requested (1 only)</label><br/>
-    <input class="startrow" type="text" name="step3SchoolAttended" id="step3SchoolAttended">
+    <input class="startrow required" type="text" name="step3SchoolAttended" id="step3SchoolAttended">
     <input type="text" name="step3CabinMateRequested" id="step3CabinMateRequested">
 </li>
 <li class="step" id="step4"><span class="stepName">Health Information</span><span
