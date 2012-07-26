@@ -225,7 +225,7 @@
     <input type="text" name="step3PostalCode" id="step3PostalCode"><br>
     <label  style="padding-right: 128px" for="step3SchoolAttended">School Attended</label>
     <label for="step3CabinMateRequested">Cabin Mate Requested (1 only)</label><br/>
-    <input class="startrow required" type="text" name="step3SchoolAttended" id="step3SchoolAttended">
+    <input class="startrow required" type="text" name="step3SchoolAttended" id="step3SchoolAttended" title="Please specify School Attended">
     <input type="text" name="step3CabinMateRequested" id="step3CabinMateRequested">
 </li>
 <li class="step" id="step4"><span class="stepName">Health Information</span><span
@@ -235,14 +235,14 @@
     <label style="padding-right: 142px" for="step4FamilyDoctor">Family Doctor</label>
     <label for="step4FamilyDoctorTelephone">Telephone</label>
     <br/>
-    <input class="startrow" type="text" name="step4FamilyDoctor" id="step4FamilyDoctor">
+    <input class="startrow required" type="text" name="step4FamilyDoctor" id="step4FamilyDoctor" title="Family Doctor is required">
     <input type="text" name="step4FamilyDoctorTelephone" id="step4FamilyDoctorTelephone">
 
     <div class="solidBorder"></div>
     <label style="padding-right: 142px" for="step4HealthCard#">Health Card #</label>
     <label for="step4DateOfLastTetanusShot">Date of Last Tetanus Shot</label>
     <br/>
-    <input class="startrow" type="text" name="step4HealthCard#" id="step4HealthCard#">
+    <input class="startrow required" type="text" name="step4HealthCard#" id="step4HealthCard#" title="Health Card # is required">
     <input type="text" name="step4DateOfLastTetanusShot" id="step4DateOfLastTetanusShot">
     <br/>
     <label style="padding-right: 225px" for="step4MedicalHistory">Medical History</label>
@@ -261,8 +261,8 @@
     <label style="padding-right: 142px" for="step5FirstName1">First Name(s)</label>
     <label for="step5LastName1">Last Name</label>
     <br/>
-    <input class="startrow" type="text" name="step5FirstName1" id="step5FirstName1">
-    <input type="text" name="step5LastName1" id="step5LastName1">
+    <input class="startrow required" type="text" name="step5FirstName1" id="step5FirstName1" title="First Name required">
+    <input class="required" type="text" name="step5LastName1" id="step5LastName1" title="Last Name required">
     <br/>
     <label style="padding-right:82px;" for="step5HomeTelephone1">Home Telephone</label>
     <label style="padding-right:66px;" for="step5AlternateTelephone1">Alternate Telephone</label>
@@ -295,10 +295,37 @@
     <textarea name="step5AdditionalInfo" id="step5AdditionalInfo"></textarea>
     <textarea name="step5HowDidYouHear" id="step5HowDidYouHear"></textarea>
     <br/>
-    <input class="startrow" type="checkbox" name="step5agree" id="step5Agree">
+    <input class="startrow required" type="checkbox" name="step5agree" id="step5Agree" title="Indicate that You agree to the Terms and Conditions">
     <label for="step5Agree">I have read and agree to the <a href="#" target="_blank">terms and conditions</a></label>
 </li>
-<li class="step" id="step6"><span></span>Confirmation</span><span class="stepCount">Step 6 of 6</span>
+<li class="step" id="step6"><span class="stepName">Confirmation</span><span class="stepCount">Step 6 of 6</span>
+    <div class="dottedBorder"></div>
+    <p>Please confirm all the information you've entered. Once you click 'Submit' we'll send you a confirmation email
+        indicating that we've received your online registration form. An invoice email will follow within XXX days.</p>
+    <div class="solidBorder"></div>
+    <div id="step6CampSessionConfirm">
+        <h3>Camp Session</h3><span class="editLink">edit</span>
+    </div>
+    <div class="solidBorder"></div>
+    <div id="step6BusTransportationConfirm">
+        <h3>Bus Transportation</h3><span class="editLink">edit</span>
+    </div>
+    <div class="solidBorder"></div>
+    <div id="step6ActivitiesConfirm">
+        <h3>Activities</h3><span class="editLink">edit</span>
+    </div>
+    <div class="solidBorder"></div>
+    <div id="step6CamperInfoConfirm">
+        <h3>Camper Information</h3><span class="editLink">edit</span>
+    </div>
+    <div class="solidBorder"></div>
+    <div id="step6HealthInfoConfirm">
+        <h3>Health Information</h3><span class="editLink">edit</span>
+    </div>
+    <div class="solidBorder"></div>
+    <div id="step6ParentInfoConfirm">
+        <h3>Parent/Guardian Information</h3><span class="editLink">edit</span>
+    </div>
     <input type="submit" name="submit" id="submit">
 </li>
 <li class="step" id="step7">

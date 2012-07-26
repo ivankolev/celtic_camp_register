@@ -40,15 +40,28 @@ CCR = {
         else if (step === "step3") {
             result = CCR.validateStep3();
         }
-        return result;
+        else if (step === "step4"){
+            result = CCR.validateStep4();
+        }
+        else if (step === "step5"){
+            result = CCR.validateStep5();
+        }
+        //return result; TODO enable after you finish developing
+        return true //TODO delete this
     },
     onAfter:function (curr, next, opts, fwd) {
         console.log("After going to" + next.id);
-        if (next.id === "step1") {
+        if (next.id === "step1" || next.id === "step6") {
             $("#prev").css("visibility", "hidden");
         }
         else {
             $("#prev").css("visibility", "visible");
+        }
+        if(next.id === "step6"){
+            $("#next").css("visibility", "hidden");
+        }
+        else{
+            $("#next").css("visibility", "visible");
         }
         if (next.id === "step2") {
             CCR.initStep2Display();
@@ -101,6 +114,22 @@ CCR = {
         return true;
     },
     validateStep3:function () {
+        if (CCR.v.form()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    },
+    validateStep4:function () {
+        if (CCR.v.form()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    },
+    validateStep5:function () {
         if (CCR.v.form()) {
             return true;
         }
@@ -258,6 +287,22 @@ CCR = {
                 step3PostalCode: {
                     required:true,
                     pattern: CCR.regexPostalCode
+                },
+                step4FamilyDoctorTelephone: {
+                    required:true,
+                    phoneUS:true
+                },
+                step4DateOfLastTetanusShot: {
+                    required:true,
+                    dateITA:true
+                },
+                step5HomeTelephone1: {
+                    required:true,
+                    phoneUS: true
+                },
+                step5Email1: {
+                    required:true,
+                    email:true
                 }
             },
             messages: {
@@ -275,6 +320,22 @@ CCR = {
                 step3PostalCode: {
                     required: "Postal Code is required",
                     pattern: "Please enter a valid Postal Code"
+                },
+                step4FamilyDoctorTelephone: {
+                    required: "Family Doctor telephone is required",
+                    phoneUS:"Please enter a valid phone number"
+                },
+                step4DateOfLastTetanusShot: {
+                    required: "Date of last tetanus shot is required",
+                    dateITA: "Please enter the date in dd/mm/yyyy format"
+                },
+                step5HomeTelephone1: {
+                    required: "Home Telephone is required",
+                    phoneUS: "Please enter a valid phone number"
+                },
+                step5Email1: {
+                    required:"Email is required",
+                    email:"Please enter a valid email address"
                 }
             }
         });

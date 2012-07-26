@@ -165,14 +165,23 @@ input.startrow {
 #step1Section4 {
     border-top: 1px solid #c4c4c4;
 }
-#step1Section5 .dottedBorder, #step2 .dottedBorder, #step3 .dottedBorder, #step4 .dottedBorder, #step5 .dottedBorder {
+#step1Section5 .dottedBorder,
+#step2 .dottedBorder,
+#step3 .dottedBorder,
+#step4 .dottedBorder,
+#step5 .dottedBorder,
+#step6 .dottedBorder {
     padding-bottom: 0;
     margin-bottom: 0;
     height: 1px;
     width:100%;
     border-top: 1px dotted #c4c4c4;
 }
-#step2 .dottedBorder, #step3 .dottedBorder, #step4 .dottedBorder, #step5 .dottedBorder  {
+#step2 .dottedBorder,
+#step3 .dottedBorder,
+#step4 .dottedBorder,
+#step5 .dottedBorder,
+#step6 .dottedBorder  {
     margin-bottom: 15px;
     margin-top: 15px;
     display: block;
@@ -226,4 +235,21 @@ input.startrow {
     background: #FFF2BF url(../assets/warning_icon.png) no-repeat 10px 15px;
     border: 1px solid #D7C993;
     color: #A48200;
+}
+#submit {
+    cursor: pointer;
+    border:none;
+    padding-left:11111px;
+    width:92px;
+    height: 30px;
+    background: url(../assets/ccr_submit.jpg) no-repeat;
+}
+#step6 h3 {
+    font-family: "Trebuchet MS";
+    font-size: 17px;
+    color:#3f4317;
+    padding-right: 10px;
+}
+#step6 .editLink {
+    cursor: pointer;
 }
