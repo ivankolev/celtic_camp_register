@@ -46,8 +46,8 @@ CCR = {
         else if (step === "step5"){
             result = CCR.validateStep5();
         }
-        //return result; TODO enable after you finish developing
-        return true //TODO delete this
+        return result;
+        //return true //TODO delete this
     },
     onAfter:function (curr, next, opts, fwd) {
         console.log("After going to" + next.id);
@@ -72,6 +72,9 @@ CCR = {
     },
     onBefore:function (curr, next, opts, fwd) {
         console.log("Before going to" + next.id);
+        if(next.id === "step6"){
+            CCR.populateStep6();
+        }
     },
     validateStep1:function () {
         var isSessionSelected = $("#step1Section1 input:checked").length +
@@ -92,18 +95,11 @@ CCR = {
         }
     },
     validateStep2:function () {
-        var activitiesDisplayed = false;
-        var sessionsDisplayed = 0;
-        $("#step2 div").each(function () {
-            if ($(this).css("display") !== "none") {
-                activitiesDisplayed = true;
-                sessionsDisplayed++;
-            }
-        });
-        if (activitiesDisplayed) {
+        var step2Sessions = CCR.step2ActiveSessions();
+        if (step2Sessions) {
             var numActivities = $("#step2 input:checked").length;
-            if (numActivities === 0 || numActivities !== sessionsDisplayed * 3) {
-                CCR.displayErrors("Please choose three activities per session plus an alternate activity for each session!")
+            if (numActivities === 0 || numActivities !== step2Sessions * 3) {
+                CCR.displayErrors("Please choose three activities per session plus an alternate activity for each session")
                 return false;
             }
             else {
@@ -136,6 +132,33 @@ CCR = {
         else {
             return false;
         }
+    },
+    populateStep6: function(){
+        CCR.populateCampSession();
+        CCR.populateBusTransport();
+        CCR.populateActivities();
+        CCR.populateCamperInfo();
+        CCR.populateHealthInfo();
+        CCR.populateParentInfo();
+
+    },
+    populateCampSession:function(){
+
+    },
+    populateBusTransport:function(){
+
+    },
+    populateActivities:function(){
+
+    },
+    populateCamperInfo:function(){
+
+    },
+    populateHealthInfo:function(){
+
+    },
+    populateParentInfo:function(){
+
     },
     displayErrors:function (errorMessage) {
         $("#errors").css("display", "block");
@@ -206,12 +229,13 @@ CCR = {
     },
     initStep2Select:function () {
         $("#step2 select").remove();
-
+        $("#step2 label").remove();
         var $step2div = $("#step2 div");
         $step2div.each(function () {
             var $selectid = $(this).attr("id") + "select";
             var $inputArray = $('input', $(this));
-            $(this).append("<select name='" + $selectid + "' id='" + $selectid + "'></select>");
+            $(this).append("<label for='" + $selectid + "'>Alternate:</label>" +
+                "<select name='" + $selectid + "' id='" + $selectid + "'></select>");
             $inputArray.each(function () {
                 var $inputid = $(this).attr("value");
                 var $select = $("select", $(this).parent());
@@ -221,7 +245,10 @@ CCR = {
         });
     },
     initStep2Events:function () {
+        CCR.step2firstRunCounter = 0;
         $("#step2 input:checkbox").change(function () {
+            CCR.step2firstRun = CCR.step2ActiveSessions()*3;
+            CCR.step2firstRunCounter++;
             var $parentid = $(this).parent().attr("id");
             var queryStringChecked = "#" + $parentid + " input:checkbox:checked";
             var $qsc = $(queryStringChecked);
@@ -255,12 +282,26 @@ CCR = {
             });
             if ($qsc.length > 2) {
                 $qsu.attr("disabled", "disabled");
+                if(CCR.step2firstRun < CCR.step2firstRunCounter){
+                    CCR.validateStep2();
+                }
             }
             else if ($qsc.length < 3) {
                 $qsu.removeAttr("disabled");
-
+                if(CCR.step2firstRun < CCR.step2firstRunCounter){
+                    CCR.validateStep2();
+                }
             }
         });
+    },
+    step2ActiveSessions: function(){
+        var sessionsDisplayed = 0;
+        $("#step2 div").each(function () {
+            if ($(this).css("display") !== "none") {
+                sessionsDisplayed++;
+            }
+        });
+        return sessionsDisplayed;
     },
     initValidate:function () {
         jQuery.validator.setDefaults({
@@ -347,6 +388,12 @@ CCR = {
             "Yukon Territories");
         CCR.regexPostalCode = new RegExp("^(([ABCEGHJKLMNPRSTVXY]|[abceghjklmnprstvxy])\\d([ABCEGHJKLMNPRSTVWXYZ]|" +
             "[abceghjklmnprstvwxyz])(\\s|)\\d([ABCEGHJKLMNPRSTVWXYZ]|[abceghjklmnprstvwxyz])\\d)$");
+    },
+    gotoStep:function(stepNum){
+       while(stepNum < 6){
+           $("#slider").cycle("prev");
+           stepNum++;
+       }
     }
 };
 

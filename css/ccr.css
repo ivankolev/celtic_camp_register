@@ -186,16 +186,29 @@ input.startrow {
     margin-top: 15px;
     display: block;
 }
+#step2 h1 {
+    font-weight: normal;
+    font-size: 18px;
+}
 #step2 h2 {
+    font-weight: normal;
     padding-bottom: 5px;
     padding-top: 5px;
     font-size: 14px;
 }
+
 #step2 div {
+    font-weight: bold;
     display: none;
     border-bottom: 1px dotted #c4c4c4;
     margin-bottom: 15px;
     padding-bottom: 15px;
+}
+#step2 label {
+
+}
+#step2 select {
+    margin:10px 0 0 10px;
 }
 #step3 input, #step4 input, #step5 input {
     margin: 10px 5px 10px 10px;
@@ -239,12 +252,16 @@ input.startrow {
 #submit {
     cursor: pointer;
     border:none;
-    padding-left:11111px;
+    text-indent:11111px;
     width:92px;
     height: 30px;
     background: url(../assets/ccr_submit.jpg) no-repeat;
 }
+.step6info {
+    min-height: 50px;
+}
 #step6 h3 {
+    display: inline;
     font-family: "Trebuchet MS";
     font-size: 17px;
     color:#3f4317;
