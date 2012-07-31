@@ -40,10 +40,10 @@ CCR = {
         else if (step === "step3") {
             result = CCR.validateStep3();
         }
-        else if (step === "step4"){
+        else if (step === "step4") {
             result = CCR.validateStep4();
         }
-        else if (step === "step5"){
+        else if (step === "step5") {
             result = CCR.validateStep5();
         }
         return result;
@@ -57,10 +57,10 @@ CCR = {
         else {
             $("#prev").css("visibility", "visible");
         }
-        if(next.id === "step6"){
+        if (next.id === "step6") {
             $("#next").css("visibility", "hidden");
         }
-        else{
+        else {
             $("#next").css("visibility", "visible");
         }
         if (next.id === "step2") {
@@ -72,7 +72,7 @@ CCR = {
     },
     onBefore:function (curr, next, opts, fwd) {
         console.log("Before going to" + next.id);
-        if(next.id === "step6"){
+        if (next.id === "step6") {
             CCR.populateStep6();
         }
     },
@@ -133,7 +133,9 @@ CCR = {
             return false;
         }
     },
-    populateStep6: function(){
+    populateStep6:function () {
+        //clear all previously generated Info:
+        $(".step6generatedInfo").remove();
         CCR.populateCampSession();
         CCR.populateBusTransport();
         CCR.populateActivities();
@@ -142,22 +144,45 @@ CCR = {
         CCR.populateParentInfo();
 
     },
-    populateCampSession:function(){
+    populateCampSession:function () {
+        var campSession = $("#step1 input[name=step1group1]:checked").siblings("h2").html();
+        var campSessionOrdinal = "";
+        $("#step1 input[name=step1group1]:checked").each(function () {
+            campSessionOrdinal += "<br/>" + $(this).val().split(" ")[1].replace(/(\d)/g, " $1 ");
+        });
+        $("#step6CampSessionConfirm")
+            .append("<div class='step6generatedInfo'><br/>" + campSession + campSessionOrdinal+"</div>");
+        if (campSessionOrdinal.match(/basketball/) || campSessionOrdinal.match(/volleyball/)) {
+            $("#step6CampSessionConfirm").append("<br/>Coach's Name: " + $("#step1group3CoachName").val());
+        }
+    },
+    populateBusTransport:function () {
+        var busTransport = $("#step1 input[name=step1group2]:checked");
+        var formattedOutput = "";
+        if (busTransport.length) {
+            $("#step6BusTransportationConfirm").prev(".solidBorder").css("display", "block");
+            $("#step6BusTransportationConfirm").css("display", "block");
+            busTransport.each(function(){
+                    formattedOutput += "<br/>" + $(this).val().split(" ")[1].replace(/from/, "From ")
+                        .replace(/to/, "To ")
+                        .replace(/(\d)/g, " $1 ");
+                });
+            $("#step6BusTransportationConfirm").append(formattedOutput);
+        }else{
+            $("#step6BusTransportationConfirm").prev(".solidBorder").css("display", "none");
+            $("#step6BusTransportationConfirm").css("display", "none");
+        }
+    },
+    populateActivities:function () {
 
     },
-    populateBusTransport:function(){
+    populateCamperInfo:function () {
 
     },
-    populateActivities:function(){
+    populateHealthInfo:function () {
 
     },
-    populateCamperInfo:function(){
-
-    },
-    populateHealthInfo:function(){
-
-    },
-    populateParentInfo:function(){
+    populateParentInfo:function () {
 
     },
     displayErrors:function (errorMessage) {
@@ -247,7 +272,7 @@ CCR = {
     initStep2Events:function () {
         CCR.step2firstRunCounter = 0;
         $("#step2 input:checkbox").change(function () {
-            CCR.step2firstRun = CCR.step2ActiveSessions()*3;
+            CCR.step2firstRun = CCR.step2ActiveSessions() * 3;
             CCR.step2firstRunCounter++;
             var $parentid = $(this).parent().attr("id");
             var queryStringChecked = "#" + $parentid + " input:checkbox:checked";
@@ -282,19 +307,19 @@ CCR = {
             });
             if ($qsc.length > 2) {
                 $qsu.attr("disabled", "disabled");
-                if(CCR.step2firstRun < CCR.step2firstRunCounter){
+                if (CCR.step2firstRun < CCR.step2firstRunCounter) {
                     CCR.validateStep2();
                 }
             }
             else if ($qsc.length < 3) {
                 $qsu.removeAttr("disabled");
-                if(CCR.step2firstRun < CCR.step2firstRunCounter){
+                if (CCR.step2firstRun < CCR.step2firstRunCounter) {
                     CCR.validateStep2();
                 }
             }
         });
     },
-    step2ActiveSessions: function(){
+    step2ActiveSessions:function () {
         var sessionsDisplayed = 0;
         $("#step2 div").each(function () {
             if ($(this).css("display") !== "none") {
@@ -305,95 +330,95 @@ CCR = {
     },
     initValidate:function () {
         jQuery.validator.setDefaults({
-            errorPlacement: function(error, element) {
+            errorPlacement:function (error, element) {
                 error.appendTo("#errorsList");
             },
-            errorContainer: "#errorsList",
-            errorLabelContainer: "#errorsList",
-            wrapper: "li"
+            errorContainer:"#errorsList",
+            errorLabelContainer:"#errorsList",
+            wrapper:"li"
         });
         CCR.v = $("#register_form").validate({
             rules:{
-                step3group1: {
-                  required:true
+                step3group1:{
+                    required:true
                 },
-                step3DateOfBirth: {
-                    required: true,
-                    dateITA: true
-                },
-                step3Province: {
-                    required: true,
-                    pattern: CCR.regexProvince
-                },
-                step3PostalCode: {
-                    required:true,
-                    pattern: CCR.regexPostalCode
-                },
-                step4FamilyDoctorTelephone: {
-                    required:true,
-                    phoneUS:true
-                },
-                step4DateOfLastTetanusShot: {
+                step3DateOfBirth:{
                     required:true,
                     dateITA:true
                 },
-                step5HomeTelephone1: {
+                step3Province:{
                     required:true,
-                    phoneUS: true
+                    pattern:CCR.regexProvince
                 },
-                step5Email1: {
+                step3PostalCode:{
+                    required:true,
+                    pattern:CCR.regexPostalCode
+                },
+                step4FamilyDoctorTelephone:{
+                    required:true,
+                    phoneUS:true
+                },
+                step4DateOfLastTetanusShot:{
+                    required:true,
+                    dateITA:true
+                },
+                step5HomeTelephone1:{
+                    required:true,
+                    phoneUS:true
+                },
+                step5Email1:{
                     required:true,
                     email:true
                 }
             },
-            messages: {
-                step3group1: {
-                  required:"Please specify Male or Female"
+            messages:{
+                step3group1:{
+                    required:"Please specify: male or female camper"
                 },
-                step3DateOfBirth: {
-                    required: "Date of Birth is required",
-                    dateITA: "Date of Birth should be in dd/mm/yyyy format"
+                step3DateOfBirth:{
+                    required:"Date of Birth is required",
+                    dateITA:"Date of Birth should be in dd/mm/yyyy format"
                 },
-                step3Province: {
-                    required: "Province is required",
-                    pattern: "Please enter a valid province name or abbreviation"
+                step3Province:{
+                    required:"Province is required",
+                    pattern:"Please enter a valid province name or abbreviation"
                 },
-                step3PostalCode: {
-                    required: "Postal Code is required",
-                    pattern: "Please enter a valid Postal Code"
+                step3PostalCode:{
+                    required:"Postal Code is required",
+                    pattern:"Please enter a valid Postal Code"
                 },
-                step4FamilyDoctorTelephone: {
-                    required: "Family Doctor telephone is required",
+                step4FamilyDoctorTelephone:{
+                    required:"Family Doctor telephone is required",
                     phoneUS:"Please enter a valid phone number"
                 },
-                step4DateOfLastTetanusShot: {
-                    required: "Date of last tetanus shot is required",
-                    dateITA: "Please enter the date in dd/mm/yyyy format"
+                step4DateOfLastTetanusShot:{
+                    required:"Date of last tetanus shot is required",
+                    dateITA:"Please enter the date in dd/mm/yyyy format"
                 },
-                step5HomeTelephone1: {
-                    required: "Home Telephone is required",
-                    phoneUS: "Please enter a valid phone number"
+                step5HomeTelephone1:{
+                    required:"Home Telephone is required",
+                    phoneUS:"Please enter a valid phone number"
                 },
-                step5Email1: {
+                step5Email1:{
                     required:"Email is required",
                     email:"Please enter a valid email address"
                 }
             }
         });
     },
-    initRegexPatterns: function(){
-        CCR.regexProvince = new RegExp("AB|ALB|Alta|alberta|BC|CB|British Columbia|LB|Labrador|MB|Man|Manitoba|" +
+    initRegexPatterns:function () {
+        CCR.regexProvince = new RegExp("AB|ALB|Alta|Alberta|BC|CB|British Columbia|LB|Labrador|MB|Man|Manitoba|" +
             "N[BLTSU]|Nfld|NF|Newfoundland|NWT|Northwest Territories|Nova Scotia|New Brunswick|Nunavut|ON|ONT|" +
             "Ontario|PE|PEI|IPE|Prince Edward Island|QC|PC|QUE|QU|Quebec|SK|Sask|Saskatchewan|YT|Yukon|" +
             "Yukon Territories");
         CCR.regexPostalCode = new RegExp("^(([ABCEGHJKLMNPRSTVXY]|[abceghjklmnprstvxy])\\d([ABCEGHJKLMNPRSTVWXYZ]|" +
             "[abceghjklmnprstvwxyz])(\\s|)\\d([ABCEGHJKLMNPRSTVWXYZ]|[abceghjklmnprstvwxyz])\\d)$");
     },
-    gotoStep:function(stepNum){
-       while(stepNum < 6){
-           $("#slider").cycle("prev");
-           stepNum++;
-       }
+    gotoStep:function (stepNum) {
+        while (stepNum < 6) {
+            $("#slider").cycle("prev");
+            stepNum++;
+        }
     }
 };
 
