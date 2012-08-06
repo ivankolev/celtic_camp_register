@@ -270,3 +270,8 @@ input.startrow {
 #step6 .editLink {
     cursor: pointer;
 }
+.sessionHeader {
+    font-family: "Trebuchet MS";
+    font-size: 15px;
+    color: #3F4317;
+}

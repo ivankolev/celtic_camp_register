@@ -99,7 +99,8 @@ CCR = {
         if (step2Sessions) {
             var numActivities = $("#step2 input:checked").length;
             if (numActivities === 0 || numActivities !== step2Sessions * 3) {
-                CCR.displayErrors("Please choose three activities per session plus an alternate activity for each session")
+                CCR.displayErrors("Please choose three activities per " +
+                    "session plus an alternate activity for each session")
                 return false;
             }
             else {
@@ -160,8 +161,8 @@ CCR = {
         var busTransport = $("#step1 input[name=step1group2]:checked");
         var formattedOutput = "";
         if (busTransport.length) {
-            $("#step6BusTransportationConfirm").prev(".solidBorder").css("display", "block");
-            $("#step6BusTransportationConfirm").css("display", "block");
+            $("#step6BusTransportationConfirm").prev(".solidBorder").show();
+            $("#step6BusTransportationConfirm").show();
             busTransport.each(function(){
                     formattedOutput += "<br/>" + $(this).val().split(" ")[1].replace(/from/, "From ")
                         .replace(/to/, "To ")
@@ -169,12 +170,32 @@ CCR = {
                 });
             $("#step6BusTransportationConfirm").append(formattedOutput);
         }else{
-            $("#step6BusTransportationConfirm").prev(".solidBorder").css("display", "none");
-            $("#step6BusTransportationConfirm").css("display", "none");
+            $("#step6BusTransportationConfirm").prev(".solidBorder").hide();
+            $("#step6BusTransportationConfirm").hide();
         }
     },
     populateActivities:function () {
-
+       if($("#step2 div:visible").length){
+          $("#step6ActivitiesConfirm").show();
+           var displayActivities = "";
+           $("#step2 div").each(function(){
+               if($(this).css("display") === "block"){
+                   var sessionID = "<div class='sessionHeader'>" + $(this).attr("id").replace(/step\d/,"")
+                       .replace(/(\d)/, " $1").replace(/session/, "Session")+ ":</div>";
+                   displayActivities += sessionID ;
+                   $(this).children("input:checkbox:checked").each(function(){
+                       displayActivities += $(this).next().html() + "<br/>";
+                   });
+                   //strip the last breakline:
+                   displayActivities.replace(/<br\/>$/, "");
+                   displayActivities += "Alternate:" + $(this).children("select").children("option:selected").html();
+               }
+           });
+           $("#step6ActivitiesConfirm").append("<div class='step6generatedInfo'>"+displayActivities+"</div");
+       }
+       else {
+          $("#step6ActivitiesConfirm").hide();
+       }
     },
     populateCamperInfo:function () {
 
@@ -186,13 +207,13 @@ CCR = {
 
     },
     displayErrors:function (errorMessage) {
-        $("#errors").css("display", "block");
+        $("#errors").show();
         $("#errors").html("");
         $("#errors").append(errorMessage);
     },
     hideErrors:function () {
         $("#errors").html("");
-        $("#errors").css("display", "none");
+        $("#errors").hide();
     },
     initStep1Events:function () {
         $("input:checkbox[name=step1group1]").change(function () {
@@ -229,26 +250,26 @@ CCR = {
         });
     },
     initStep2Display:function () {
-        $("#step2 div").css("display", "none");
+        $("#step2 div").hide();
         $("input:checkbox:checked").each(function () {
             console.log($(this).attr("value"));
             if ($(this).attr("value") === "group1 session1") {
-                $("#step2session1").css("display", "block");
+                $("#step2session1").show();
             }
             else if ($(this).attr("value") === "group1 session2") {
-                $("#step2session2").css("display", "block");
+                $("#step2session2").show();
             }
             else if ($(this).attr("value") === "group1 session3") {
-                $("#step2session3").css("display", "block");
+                $("#step2session3").show();
             }
             else if ($(this).attr("value") === "group1 session4") {
-                $("#step2session4").css("display", "block");
+                $("#step2session4").show();
             }
             else if ($(this).attr("value") === "group1 session5") {
-                $("#step2session5").css("display", "block");
+                $("#step2session5").show();
             }
             else if ($(this).attr("value") === "group1 session6") {
-                $("#step2session6").css("display", "block");
+                $("#step2session6").show();
             }
         });
     },
@@ -284,7 +305,7 @@ CCR = {
                 $selectoptions.each(function () {
 
                     if ($(this).attr("value") === $id) {
-                        $(this).css("display", "none");
+                        $(this).hide();
                         if ($(this).attr("selected")) {
                             $(this).siblings().attr("selected", "selected");
                             $(this).removeAttr("selected");
@@ -300,7 +321,7 @@ CCR = {
                 var $selectoptions = $(this).siblings("select").children();
                 $selectoptions.each(function () {
                     if ($(this).attr("value") === $id) {
-                        $(this).css("display", "block");
+                        $(this).show();
                     }
                 });
                 console.log($id);
