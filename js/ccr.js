@@ -152,7 +152,7 @@ CCR = {
             campSessionOrdinal += "<br/>" + $(this).val().split(" ")[1].replace(/(\d)/g, " $1 ");
         });
         $("#step6CampSessionConfirm")
-            .append("<div class='step6generatedInfo'><br/>" + campSession + campSessionOrdinal+"</div>");
+            .append("<div class='step6generatedInfo'><br/>" + campSession + campSessionOrdinal + "</div>");
         if (campSessionOrdinal.match(/basketball/) || campSessionOrdinal.match(/volleyball/)) {
             $("#step6CampSessionConfirm").append("<br/>Coach's Name: " + $("#step1group3CoachName").val());
         }
@@ -163,48 +163,112 @@ CCR = {
         if (busTransport.length) {
             $("#step6BusTransportationConfirm").prev(".solidBorder").show();
             $("#step6BusTransportationConfirm").show();
-            busTransport.each(function(){
-                    formattedOutput += "<br/>" + $(this).val().split(" ")[1].replace(/from/, "From ")
-                        .replace(/to/, "To ")
-                        .replace(/(\d)/g, " $1 ");
-                });
+            busTransport.each(function () {
+                formattedOutput += "<br/>" + $(this).val().split(" ")[1].replace(/from/, "From ")
+                    .replace(/to/, "To ")
+                    .replace(/(\d)/g, " $1 ");
+            });
             $("#step6BusTransportationConfirm").append(formattedOutput);
-        }else{
+        } else {
             $("#step6BusTransportationConfirm").prev(".solidBorder").hide();
             $("#step6BusTransportationConfirm").hide();
         }
     },
     populateActivities:function () {
-       if($("#step2 div:visible").length){
-          $("#step6ActivitiesConfirm").show();
-           var displayActivities = "";
-           $("#step2 div").each(function(){
-               if($(this).css("display") === "block"){
-                   var sessionID = "<div class='sessionHeader'>" + $(this).attr("id").replace(/step\d/,"")
-                       .replace(/(\d)/, " $1").replace(/session/, "Session")+ ":</div>";
-                   displayActivities += sessionID ;
-                   $(this).children("input:checkbox:checked").each(function(){
-                       displayActivities += $(this).next().html() + "<br/>";
-                   });
-                   //strip the last breakline:
-                   displayActivities.replace(/<br\/>$/, "");
-                   displayActivities += "Alternate:" + $(this).children("select").children("option:selected").html();
-               }
-           });
-           $("#step6ActivitiesConfirm").append("<div class='step6generatedInfo'>"+displayActivities+"</div");
-       }
-       else {
-          $("#step6ActivitiesConfirm").hide();
-       }
+        if ($("#step2 div:visible").length) {
+            $("#step6ActivitiesConfirm").prev(".solidBorder").show();
+            $("#step6ActivitiesConfirm").show();
+            var displayActivities = "";
+            $("#step2 div").each(function () {
+                if ($(this).css("display") === "block") {
+                    var sessionID = "<div class='sessionHeader'>" + $(this).attr("id").replace(/step\d/, "")
+                        .replace(/(\d)/, " $1").replace(/session/, "Session") + ":</div>";
+                    displayActivities += sessionID;
+                    $(this).children("input:checkbox:checked").each(function () {
+                        displayActivities += $(this).next().html() + "<br/>";
+                    });
+                    //strip the last breakline:
+                    displayActivities.replace(/<br\/>$/, "");
+                    displayActivities += "Alternate:" + $(this).children("select").children("option:selected").html();
+                }
+            });
+            $("#step6ActivitiesConfirm").append("<div class='step6generatedInfo'>" + displayActivities + "</div");
+        }
+        else {
+            $("#step6ActivitiesConfirm").prev(".solidBorder").hide();
+            $("#step6ActivitiesConfirm").hide();
+        }
     },
     populateCamperInfo:function () {
+        var camperInfo = "";
+        camperInfo += $("#step3FirstName").val() + " " + $("#step3LastName").val() + ", " +
+            $("input[name='step3group1']:checked").val() + "<br/>";
+        camperInfo += "Date of Birth: " + $("#step3DateOfBirth").val() + "<br/>";
+        camperInfo += $("#step3Address1").val() + " " + $("#step3Address2").val();
+        camperInfo += $("#step3City").val() + ", " + $("#step3Province") + "<br/>";
+        camperInfo += $("#step3PostalCode").val() + "<br/>";
+        camperInfo += "School attended:" + $("#step3SchoolAttended").val() + "<br/>";
+        var cabinMateReq = $("#step3CabinMateRequested").val();
+        if (cabinMateReq.length) {
+            camperInfo += "Cabin Mate Requested:" + cabinMateReq;
+        }
+        $("#step6CamperInfoConfirm").append("<div class='step6generatedInfo'>" + camperInfo + "</div");
 
     },
     populateHealthInfo:function () {
-
+        var healthInfo = "";
+        healthInfo += "Family Doctor: " + $("#step4FamilyDoctor").val() + "<br/>";
+        healthInfo += $("#step4FamilyDoctorTelephone").val() + "<br/>";
+        healthInfo += "Health Card No.: " + $("#step4HealthCard\\#") + "<br/>";
+        healthInfo += "Date of Last Tetanus Shot: " + $("#step4DateOfLastTetanusShot").val() + "<br/>";
+        var medicalHistory = $("#step4MedicalHistory").val();
+        if(medicalHistory.length){
+            healthInfo += "Medical History: " + medicalHistory + "<br/>";
+        }
+        var AllergiesDisabilities = $("#step4AllergiesPhysicalDisabilities").val();
+        if(AllergiesDisabilities.length){
+            healthInfo += "Alergies, Physical Disabilities: " + AllergiesDisabilities + "<br/>";
+        }
+        var medications = $("#step4MedicationsTaken").val();
+        if(medications.length){
+            healthInfo += "Medications taken: " + medications + "<br/>";
+        }
+        $("#step6CamperInfoConfirm").append("<div class='step6generatedInfo'>" + healthInfo + "</div");
     },
     populateParentInfo:function () {
-
+        var parentInfo = "";
+        parentInfo += $("#step5FirstName1").val() + " " + $("#step5LastName1").val() + "<br/>";
+        var aparentName = $("#step5FirstName2").val();
+        if(aparentName.length){
+           parentInfo += $("#step5FirstName2").val() + " " + $("#step5LastName2").val() + "<br/>";
+        }
+        parentInfo += "Home phone 1: " + $("#step5HomeTelephone1").val() + "<br/>";
+        var alterPhone1 = $("#step5AlternateTelephone1").val();
+        if(alterPhone1.length){
+            parentInfo += "Alternate phone 1: " + alterPhone1 + "<br/>";
+        }
+        var homePhone2 = $("#step5HomeTelephone2").val();
+        if(homePhone2.length){
+            parentInfo += "Home phone 2: " + homePhone2 + "<br/>";
+        }
+        var alterPhone2 = $("#step5AlternateTelephone2").val();
+        if(alterPhone2.length){
+            parentInfo += "Alternate phone 2: " + alterPhone2 + "<br/>";
+        }
+        parentInfo += "Email 1: " + $("#step5Email1").val() + "<br/>";
+        var aemail = $("$step5Email2").val();
+        if(aemail.length){
+            parentInfo += "Email 2: " + aemail + "<br/>";
+        }
+        var additionalInfo = $("#step5AdditionalInfo").val();
+        if(additionalInfo.length){
+            parentInfo += "Additional Info: " + additionalInfo + "<br/>";
+        }
+        var referer = $("#step5HowDidYouHear").val();
+        if(referer.length){
+            parentInfo += "How did you hear about camp celtic: " + referer + "<br/>";
+        }
+        $("#step6CamperInfoConfirm").append("<div class='step6generatedInfo'>" + parentInfo + "</div");
     },
     displayErrors:function (errorMessage) {
         $("#errors").show();
