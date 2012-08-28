@@ -13,9 +13,12 @@ CCR = {
     },
     initNavigation:function () {
         $("#prev").on("click", function () {
+            CCR.hideErrors();
             $("#slider").cycle("prev");
+
         });
         $("#next").on("click", function () {
+            CCR.hideErrors();
             var currentStep;
             $(".step").each(function () {
                 if ($(this).css("display") !== "none") {
@@ -47,7 +50,6 @@ CCR = {
             result = CCR.validateStep5();
         }
         return result;
-        //return true //TODO delete this
     },
     onAfter:function (curr, next, opts, fwd) {
         console.log("After going to" + next.id);
@@ -63,17 +65,29 @@ CCR = {
         else {
             $("#next").css("visibility", "visible");
         }
-        if (next.id === "step2") {
-            CCR.initStep2Display();
-            CCR.initStep2Select();
-        }
+
         var $ht = $(this).height();
         $(this).parent().animate({height:$ht, speed:50});
     },
     onBefore:function (curr, next, opts, fwd) {
         console.log("Before going to" + next.id);
+        if (next.id === "step2") {
+            CCR.initStep2Display();
+            CCR.initStep2Select();
+            $("#step2 div").each(function(){
+                var $qsc = $("#" + $(this).attr("id") + " input:checkbox:checked");
+                CCR.step2RemoveCheckedFromSelect($qsc);
+            });
+
+        }
         if (next.id === "step6") {
             CCR.populateStep6();
+        }
+        if(next.id === "step7") {
+            $("#register_instructions").hide();
+        }
+        else{
+            $("#register_instructions").show();
         }
     },
     validateStep1:function () {
@@ -95,11 +109,11 @@ CCR = {
         }
     },
     validateStep2:function () {
-        var step2Sessions = CCR.step2ActiveSessions();
-        if (step2Sessions) {
+        var step2TotalAllowedActivities = CCR.step2TotalAllowedActivities();
+        if (step2TotalAllowedActivities) {
             var numActivities = $("#step2 input:checked").length;
-            if (numActivities === 0 || numActivities !== step2Sessions * 3) {
-                CCR.displayErrors("Please choose three activities per " +
+            if (numActivities === 0 || numActivities !== step2TotalAllowedActivities) {
+                CCR.displayErrors("Please choose the designated amount of activities per " +
                     "session plus an alternate activity for each session")
                 return false;
             }
@@ -143,7 +157,20 @@ CCR = {
         CCR.populateCamperInfo();
         CCR.populateHealthInfo();
         CCR.populateParentInfo();
+        CCR.populateHiddenFields();
 
+    },
+    populateHiddenFields: function(){
+        //clear all previously generated hidden fields:
+        $("input[type='hidden']").remove();
+        $(".step6generatedInfo").each(function(i){
+            var textID = $(this).parent().attr("id") + "Text";
+            var addLineBreaks = $(this).html().replace("<br/>", "\r\n");
+            $(this).html(addLineBreaks);
+            $("#register_form").append("<input type='hidden'" +
+                " id='"+textID+"' name='"+textID+"' value='"+$(this).text()+"'/>");
+
+        });
     },
     populateCampSession:function () {
         var campSession = $("#step1 input[name=step1group1]:checked").siblings("h2").html();
@@ -175,7 +202,7 @@ CCR = {
         }
     },
     populateActivities:function () {
-        if ($("#step2 div:visible").length) {
+        if ($("#step2 div").css("display") === "block") {
             $("#step6ActivitiesConfirm").prev(".solidBorder").show();
             $("#step6ActivitiesConfirm").show();
             var displayActivities = "";
@@ -205,12 +232,12 @@ CCR = {
             $("input[name='step3group1']:checked").val() + "<br/>";
         camperInfo += "Date of Birth: " + $("#step3DateOfBirth").val() + "<br/>";
         camperInfo += $("#step3Address1").val() + " " + $("#step3Address2").val();
-        camperInfo += $("#step3City").val() + ", " + $("#step3Province") + "<br/>";
+        camperInfo += $("#step3City").val() + ", " + $("#step3Province").val() + "<br/>";
         camperInfo += $("#step3PostalCode").val() + "<br/>";
-        camperInfo += "School attended:" + $("#step3SchoolAttended").val() + "<br/>";
+        camperInfo += "School attended: " + $("#step3SchoolAttended").val() + "<br/>";
         var cabinMateReq = $("#step3CabinMateRequested").val();
         if (cabinMateReq.length) {
-            camperInfo += "Cabin Mate Requested:" + cabinMateReq;
+            camperInfo += "Cabin Mate Requested: " + cabinMateReq;
         }
         $("#step6CamperInfoConfirm").append("<div class='step6generatedInfo'>" + camperInfo + "</div");
 
@@ -219,7 +246,7 @@ CCR = {
         var healthInfo = "";
         healthInfo += "Family Doctor: " + $("#step4FamilyDoctor").val() + "<br/>";
         healthInfo += $("#step4FamilyDoctorTelephone").val() + "<br/>";
-        healthInfo += "Health Card No.: " + $("#step4HealthCard\\#") + "<br/>";
+        healthInfo += "Health Card No.: " + $("#step4HealthCard\\#").val() + "<br/>";
         healthInfo += "Date of Last Tetanus Shot: " + $("#step4DateOfLastTetanusShot").val() + "<br/>";
         var medicalHistory = $("#step4MedicalHistory").val();
         if(medicalHistory.length){
@@ -233,7 +260,7 @@ CCR = {
         if(medications.length){
             healthInfo += "Medications taken: " + medications + "<br/>";
         }
-        $("#step6CamperInfoConfirm").append("<div class='step6generatedInfo'>" + healthInfo + "</div");
+        $("#step6HealthInfoConfirm").append("<div class='step6generatedInfo'>" + healthInfo + "</div");
     },
     populateParentInfo:function () {
         var parentInfo = "";
@@ -256,7 +283,7 @@ CCR = {
             parentInfo += "Alternate phone 2: " + alterPhone2 + "<br/>";
         }
         parentInfo += "Email 1: " + $("#step5Email1").val() + "<br/>";
-        var aemail = $("$step5Email2").val();
+        var aemail = $("#step5Email2").val();
         if(aemail.length){
             parentInfo += "Email 2: " + aemail + "<br/>";
         }
@@ -268,7 +295,7 @@ CCR = {
         if(referer.length){
             parentInfo += "How did you hear about camp celtic: " + referer + "<br/>";
         }
-        $("#step6CamperInfoConfirm").append("<div class='step6generatedInfo'>" + parentInfo + "</div");
+        $("#step6ParentInfoConfirm").append("<div class='step6generatedInfo'>" + parentInfo + "</div");
     },
     displayErrors:function (errorMessage) {
         $("#errors").show();
@@ -315,6 +342,7 @@ CCR = {
     },
     initStep2Display:function () {
         $("#step2 div").hide();
+        $("#step2notneeded").hide();
         $("input:checkbox:checked").each(function () {
             console.log($(this).attr("value"));
             if ($(this).attr("value") === "group1 session1") {
@@ -336,6 +364,9 @@ CCR = {
                 $("#step2session6").show();
             }
         });
+        if($("input:checkbox:checked").length == 0 ){
+            $("#step2notneeded").show();
+        }
     },
     initStep2Select:function () {
         $("#step2 select").remove();
@@ -357,46 +388,27 @@ CCR = {
     initStep2Events:function () {
         CCR.step2firstRunCounter = 0;
         $("#step2 input:checkbox").change(function () {
-            CCR.step2firstRun = CCR.step2ActiveSessions() * 3;
+            CCR.step2firstRun = CCR.step2TotalAllowedActivities();
             CCR.step2firstRunCounter++;
-            var $parentid = $(this).parent().attr("id");
-            var queryStringChecked = "#" + $parentid + " input:checkbox:checked";
-            var $qsc = $(queryStringChecked);
-            //remove checked from select:
-            $qsc.each(function () {
-                var $id = $(this).attr("value");
-                var $selectoptions = $(this).siblings("select").children();
-                $selectoptions.each(function () {
 
-                    if ($(this).attr("value") === $id) {
-                        $(this).hide();
-                        if ($(this).attr("selected")) {
-                            $(this).siblings().attr("selected", "selected");
-                            $(this).removeAttr("selected");
-                        }
-                    }
-                });
-                console.log($id);
-            });
-            var queryStringUnchecked = "#" + $parentid + " input[type=checkbox]:not(:checked)";
-            var $qsu = $(queryStringUnchecked);
-            $qsu.each(function () {
-                var $id = $(this).attr("value");
-                var $selectoptions = $(this).siblings("select").children();
-                $selectoptions.each(function () {
-                    if ($(this).attr("value") === $id) {
-                        $(this).show();
-                    }
-                });
-                console.log($id);
-            });
-            if ($qsc.length > 2) {
+            var $qsc = $("#" + $(this).parent().attr("id") + " input:checkbox:checked");
+            //remove checked from select:
+            CCR.step2RemoveCheckedFromSelect($qsc);
+
+            var $qsu = $("#" + $(this).parent().attr("id") + " input[type=checkbox]:not(:checked)");
+            //add unchecked to select:
+            CCR.step2AddUncheckedToSelect($qsu);
+
+            //Sessions 2 and 3 have limit of 4 + alternate, all others have 3 + alternate
+            var activitiesLimit = $(this).attr("value").match(/session2|session3/g)? 3: 2;
+
+            if ($qsc.length > activitiesLimit) {
                 $qsu.attr("disabled", "disabled");
                 if (CCR.step2firstRun < CCR.step2firstRunCounter) {
                     CCR.validateStep2();
                 }
             }
-            else if ($qsc.length < 3) {
+            else if ($qsc.length < activitiesLimit + 1) {
                 $qsu.removeAttr("disabled");
                 if (CCR.step2firstRun < CCR.step2firstRunCounter) {
                     CCR.validateStep2();
@@ -404,14 +416,67 @@ CCR = {
             }
         });
     },
-    step2ActiveSessions:function () {
-        var sessionsDisplayed = 0;
+    step2RemoveCheckedFromSelect:function($qsc){
+        $qsc.each(function () {
+            var $id = $(this).attr("value");
+            var $selectoptions = $(this).siblings("select").children();
+            $selectoptions.each(function () {
+                if ($(this).attr("value") === $id) {
+                    $(this).hide();
+                    if ($(this).attr("selected")) {
+                        //TODO Clean this code smell:
+                        CCR.step2SelectAlternate($(this));
+                        //$(this).siblings().attr("selected", "selected");
+                        $(this).removeAttr("selected");
+                    }
+                }
+            });
+            console.log($id);
+        });
+    },
+    step2SelectAlternate: function (option){
+        if(option.next()){
+            if(option.next().css("display") !== "none"){
+                option.next().attr("selected", "selected");
+            }
+            else {
+                CCR.step2SelectAlternate(option.next());
+            }
+        }
+        else if(option.prev()){
+            if(option.prev().css("display") !== "none"){
+                option.prev().attr("selected", "selected");
+            }
+            else {
+                CCR.step2SelectAlternate(option.prev());
+            }
+        }
+    },
+    step2AddUncheckedToSelect:function($qsu){
+        $qsu.each(function () {
+            var $id = $(this).attr("value");
+            var $selectoptions = $(this).siblings("select").children();
+            $selectoptions.each(function () {
+                if ($(this).attr("value") === $id) {
+                    $(this).show();
+                }
+            });
+            console.log($id);
+        });
+    },
+    step2TotalAllowedActivities:function () {
+        var TotalAllowedActivities = 0;
         $("#step2 div").each(function () {
             if ($(this).css("display") !== "none") {
-                sessionsDisplayed++;
+                if($(this).attr("id") === "step2session2" || $(this).attr("id") === "step2session3"){
+                    TotalAllowedActivities+=4;
+                }
+                else {
+                    TotalAllowedActivities +=3;
+                }
             }
         });
-        return sessionsDisplayed;
+        return TotalAllowedActivities;
     },
     initValidate:function () {
         jQuery.validator.setDefaults({
@@ -488,6 +553,12 @@ CCR = {
                     required:"Email is required",
                     email:"Please enter a valid email address"
                 }
+            },
+            submitHandler: function(form) {
+                jQuery(form).ajaxSubmit({
+                    target: "#register_form_result",
+                    success: CCR.showResponse
+                });
             }
         });
     },
@@ -495,7 +566,7 @@ CCR = {
         CCR.regexProvince = new RegExp("AB|ALB|Alta|Alberta|BC|CB|British Columbia|LB|Labrador|MB|Man|Manitoba|" +
             "N[BLTSU]|Nfld|NF|Newfoundland|NWT|Northwest Territories|Nova Scotia|New Brunswick|Nunavut|ON|ONT|" +
             "Ontario|PE|PEI|IPE|Prince Edward Island|QC|PC|QUE|QU|Quebec|SK|Sask|Saskatchewan|YT|Yukon|" +
-            "Yukon Territories");
+            "Yukon Territories", "i");
         CCR.regexPostalCode = new RegExp("^(([ABCEGHJKLMNPRSTVXY]|[abceghjklmnprstvxy])\\d([ABCEGHJKLMNPRSTVWXYZ]|" +
             "[abceghjklmnprstvwxyz])(\\s|)\\d([ABCEGHJKLMNPRSTVWXYZ]|[abceghjklmnprstvwxyz])\\d)$");
     },
@@ -504,6 +575,9 @@ CCR = {
             $("#slider").cycle("prev");
             stepNum++;
         }
+    },
+    showResponse: function(){
+        $("#slider").cycle("next");
     }
 };
 

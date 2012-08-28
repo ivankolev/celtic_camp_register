@@ -7,10 +7,11 @@
     <script type="text/javascript" src="js/jquery.cycle.all.js"></script>
     <script type="text/javascript" src="js/jquery.validate.min.js"></script>
     <script type="text/javascript" src="js/additional-methods.min.js"></script>
+    <script type="text/javascript" src="js/jquery.form.js"></script>
     <script type="text/javascript" src="js/ccr.js"></script>
 </head>
 <body>
-<form id="register_form" action="register" method="POST">
+<form id="register_form" action="register.php" method="POST">
 <div id="register_instructions">
     Please fill out the registration form entirely. Once we've received your child's registration information, we'll
     send you an invoice email with payment options. If you'd like
@@ -37,6 +38,8 @@
         <h2>Leadership Camp <span class="agegroup">Ages 16-18</span></h2>
         <input class="startrow" type="radio" name="step1group1" value="group2 session2"><span>Session 2</span>
         <input type="radio" name="step1group1" value="group2 session3"> <span>Session 3</span><br>
+        <p>Please refer to the <a href="http://campceltic.ca/programme/leadership-camp/">Leadership Camp page</a>
+           for all application requirements.</p>
     </div>
     <div id="step1Section3">
         <h2>Sports Camp <span class="agegroup">Ages 13-18</span></h2><br>
@@ -69,6 +72,7 @@
 </li>
 <li class="step" id="step2"><span class="stepName">Activities</span><span class="stepCount">Step 2 of 6</span>
     <span class="dottedBorder"></span>
+    <span id="step2notneeded">You can proceed directly to step 3.</span>
     <div id="step2session1">
         <h1>Session One - <span id="session1dates">Sunday, July 1 - Saturday July 7</span></h1>
         <h2>Please select 3 activities and an alternate one from the drop-down menu</h2>
@@ -91,7 +95,7 @@
     </div>
     <div id="step2session2">
         <h1>Session Two - <span id="session2dates">Sunday, July 8 - Tuesday July 17</span></h1>
-        <h2>Please select 3 activities and an alternate one from the drop-down menu</h2>
+        <h2>Please select 4 activities and an alternate one from the drop-down menu</h2>
         <input type="checkbox" value="session2 sailing"> <span>Sailing</span><br>
         <input type="checkbox" value="session2 windsurfing"> <span>Windsurfing</span><br>
         <input type="checkbox" value="session2 kayaking"> <span>Kayaking</span><br>
@@ -111,7 +115,7 @@
     </div>
     <div id="step2session3">
         <h1>Session Three - <span id="session3dates">Thursday, July 19 - Saturday July 28</span></h1>
-        <h2>Please select 3 activities and an alternate one from the drop-down menu</h2>
+        <h2>Please select 4 activities and an alternate one from the drop-down menu</h2>
         <input type="checkbox" value="session3 sailing"> <span>Sailing</span><br>
         <input type="checkbox" value="session3 windsurfing"> <span>Windsurfing</span><br>
         <input type="checkbox" value="session3 kayaking"> <span>Kayaking</span><br>
@@ -281,8 +285,7 @@
     <textarea name="step5AdditionalInfo" id="step5AdditionalInfo"></textarea>
     <textarea name="step5HowDidYouHear" id="step5HowDidYouHear"></textarea>
     <br/>
-    <input class="startrow required" type="checkbox" name="step5agree" id="step5Agree" title="Indicate that You agree to the Terms and Conditions">
-    <label for="step5Agree">I have read and agree to the <a href="#" target="_blank">terms and conditions</a></label>
+
 </li>
 <li class="step" id="step6"><span class="stepName">Confirmation</span><span class="stepCount">Step 6 of 6</span>
     <div class="dottedBorder"></div>
@@ -312,18 +315,24 @@
     <div class="step6info" id="step6ParentInfoConfirm">
         <h3>Parent/Guardian Information</h3><span class="editLink" onclick="CCR.gotoStep(5)">edit</span>
     </div>
+    <input class="startrow required" type="checkbox" name="step6agree" id="step6Agree" title="Indicate that You agree to the Terms and Conditions">
+    <label for="step6Agree">I have read and agree to the <a href="#" target="_blank">terms and conditions</a></label>
     <input type="submit" name="submit" id="submit">
 </li>
 <li class="step" id="step7">
-    <h1>Thank you for Registering!</h1>
+    <h1>Thank you for registering!</h1>
 
-    <p>Check your inbox for a confirmation email indicating that we've received your registration form. Within a few
-        days
-        we'll send you an invoice email along with all the information you need to ensure your child's experience at
-        Camp Celtic
-        will be the best it can be.<br><br><br>
-        See you soon!
+    <p>Thank you for registering!<br/>
+        Check your inbox for a confirmation email indicating that we've received your online registration form.
+        Please double-check your submitted information in this email and <a href="http://campceltic.ca/contact-us/">
+            contact us</a> if anything needs to change.<br/>
+
+        After we review your registration form we'll send you an invoice email along with a complete list of what
+        campers need to bring to camp and all information regarding camp arrival and departure.<br/><br/>
+
+        Thank you for choosing Camp Celtic. See you soon!
     </p>
+    <div id="register_form_result"></div>
 </li>
 </ul>
 

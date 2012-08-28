@@ -250,6 +250,7 @@ input.startrow {
     color: #A48200;
 }
 #submit {
+    margin-top: 30px;
     cursor: pointer;
     border:none;
     text-indent:11111px;
