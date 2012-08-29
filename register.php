@@ -6,7 +6,7 @@
 //echo $_POST['step6HealthInfoConfirmText'];
 //echo $_POST['step6ParentInfoConfirmText'];
 $part1 = str_replace("<br>", "\r\n",$_POST['step6CampSessionConfirmText']);
-strip_tags($part1);
+$part1 = strip_tags($part1);
 $part2 = str_replace("<br>", "\r\n",$_POST['step6BusTransportationConfirmText']);
 $part3 = str_replace("<br>", "\r\n",$_POST['step6ActivitiesConfirmText']);
 $part4 = str_replace("<br>", "\r\n",$_POST['step6CamperInfoConfirmText']);
@@ -27,4 +27,4 @@ $headers = 'From: webmaster@campceltic.ca' . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
 
 mail($toIvan, $subject, $message, $headers);
-mail($toScott, $subject, $message, $headers);
+//mail($toScott, $subject, $message, $headers);

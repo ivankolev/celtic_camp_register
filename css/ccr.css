@@ -243,6 +243,7 @@ input.startrow {
     display: none;
 }
 .warning-box {
+    margin: 10px 0 0 0;
     padding: 15px 15px 20px 50px;
     font-size: 1.2em;
     background: #FFF2BF url(../assets/warning_icon.png) no-repeat 10px 15px;
@@ -251,6 +252,7 @@ input.startrow {
 }
 #submit {
     margin-top: 30px;
+    margin-left:250px;
     cursor: pointer;
     border:none;
     text-indent:11111px;

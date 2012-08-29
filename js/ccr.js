@@ -53,21 +53,18 @@ CCR = {
     },
     onAfter:function (curr, next, opts, fwd) {
         console.log("After going to" + next.id);
-        if (next.id === "step1" || next.id === "step6") {
+        if (next.id === "step1" || next.id === "step6" || next.id === "step7") {
             $("#prev").css("visibility", "hidden");
         }
         else {
             $("#prev").css("visibility", "visible");
         }
-        if (next.id === "step6") {
+        if (next.id === "step6" || next.id === "step7") {
             $("#next").css("visibility", "hidden");
         }
         else {
             $("#next").css("visibility", "visible");
         }
-
-        var $ht = $(this).height();
-        $(this).parent().animate({height:$ht, speed:50});
     },
     onBefore:function (curr, next, opts, fwd) {
         console.log("Before going to" + next.id);
@@ -89,6 +86,8 @@ CCR = {
         else{
             $("#register_instructions").show();
         }
+        var $ht = $(this).height();
+        $(this).parent().animate({height:$ht, speed:50});
     },
     validateStep1:function () {
         var isSessionSelected = $("#step1Section1 input:checked").length +
@@ -165,10 +164,8 @@ CCR = {
         $("input[type='hidden']").remove();
         $(".step6generatedInfo").each(function(i){
             var textID = $(this).parent().attr("id") + "Text";
-            var addLineBreaks = $(this).html().replace("<br/>", "\r\n");
-            $(this).html(addLineBreaks);
             $("#register_form").append("<input type='hidden'" +
-                " id='"+textID+"' name='"+textID+"' value='"+$(this).text()+"'/>");
+                " id='"+textID+"' name='"+textID+"' value='"+$(this).html().replace(/"|'/g, "`") +"'/>");
 
         });
     },
@@ -202,7 +199,7 @@ CCR = {
         }
     },
     populateActivities:function () {
-        if ($("#step2 div").css("display") === "block") {
+        if (CCR.step2Activities) {
             $("#step6ActivitiesConfirm").prev(".solidBorder").show();
             $("#step6ActivitiesConfirm").show();
             var displayActivities = "";
@@ -245,7 +242,7 @@ CCR = {
     populateHealthInfo:function () {
         var healthInfo = "";
         healthInfo += "Family Doctor: " + $("#step4FamilyDoctor").val() + "<br/>";
-        healthInfo += $("#step4FamilyDoctorTelephone").val() + "<br/>";
+        healthInfo += "Doctor's phone: " + $("#step4FamilyDoctorTelephone").val() + "<br/>";
         healthInfo += "Health Card No.: " + $("#step4HealthCard\\#").val() + "<br/>";
         healthInfo += "Date of Last Tetanus Shot: " + $("#step4DateOfLastTetanusShot").val() + "<br/>";
         var medicalHistory = $("#step4MedicalHistory").val();
@@ -305,19 +302,33 @@ CCR = {
     hideErrors:function () {
         $("#errors").html("");
         $("#errors").hide();
+        //hide also the validation plugin errors:
+        $("#errorsList").hide();
     },
     initStep1Events:function () {
         $("input:checkbox[name=step1group1]").change(function () {
+            var displayBusSection = false;
             $("input:checkbox").each(function () {
                 if ($(this).attr("checked")) {
+                    var busEnabledSectionsSelected = $(this).val().match(/session2|session3/)? true:false;
+                    displayBusSection |= busEnabledSectionsSelected;   //Beware the bitwise OR assignment here :)
+                    console.log("Display bus section: " + displayBusSection);
                     $("#step1").find("input:radio[name=step1group1]").removeAttr("checked");
-                    $("#step1Section5").fadeOut(250, function () {
-                        var $ht = $("#step1").height();
-                        $("#step1").parent().animate({height:$ht, speed:50});
-                    });
                     CCR.hideErrors();
                 }
             });
+            if(displayBusSection){
+                $("#step1Section5").fadeIn(300, function () {
+                    var $ht = $("#step1").height();
+                    $("#step1").parent().animate({height:$ht, speed:50});
+                });
+            }
+            else{
+                $("#step1Section5").fadeOut(250, function () {
+                    var $ht = $("#step1").height();
+                    $("#step1").parent().animate({height:$ht, speed:50});
+                });
+            }
         });
         $("input:radio[name=step1group1]").change(function () {
             if ($(this).attr("checked")) {
@@ -343,7 +354,7 @@ CCR = {
     initStep2Display:function () {
         $("#step2 div").hide();
         $("#step2notneeded").hide();
-        $("input:checkbox:checked").each(function () {
+        $("input:checkbox[name=step1group1]:checked").each(function () {
             console.log($(this).attr("value"));
             if ($(this).attr("value") === "group1 session1") {
                 $("#step2session1").show();
@@ -364,8 +375,12 @@ CCR = {
                 $("#step2session6").show();
             }
         });
-        if($("input:checkbox:checked").length == 0 ){
+        if($("input:checkbox[name=step1group1]:checked").length == 0 ){
             $("#step2notneeded").show();
+            CCR.step2Activities = false;
+        }
+        else {
+            CCR.step2Activities = true;
         }
     },
     initStep2Select:function () {
@@ -564,7 +579,7 @@ CCR = {
     },
     initRegexPatterns:function () {
         CCR.regexProvince = new RegExp("AB|ALB|Alta|Alberta|BC|CB|British Columbia|LB|Labrador|MB|Man|Manitoba|" +
-            "N[BLTSU]|Nfld|NF|Newfoundland|NWT|Northwest Territories|Nova Scotia|New Brunswick|Nunavut|ON|ONT|" +
+            "Nfld|NF|Newfoundland|NWT|Northwest Territories|Nova Scotia|New Brunswick|Nunavut|ON|ONT|" +
             "Ontario|PE|PEI|IPE|Prince Edward Island|QC|PC|QUE|QU|Quebec|SK|Sask|Saskatchewan|YT|Yukon|" +
             "Yukon Territories", "i");
         CCR.regexPostalCode = new RegExp("^(([ABCEGHJKLMNPRSTVXY]|[abceghjklmnprstvxy])\\d([ABCEGHJKLMNPRSTVWXYZ]|" +
