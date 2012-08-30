@@ -68,13 +68,17 @@ CCR = {
     },
     onBefore:function (curr, next, opts, fwd) {
         console.log("Before going to" + next.id);
+        if(next.id === "step1"){
+            CCR.initStep1Events();
+        }
         if (next.id === "step2") {
             CCR.initStep2Display();
             CCR.initStep2Select();
-            $("#step2 div").each(function(){
-                var $qsc = $("#" + $(this).attr("id") + " input:checkbox:checked");
-                CCR.step2RemoveCheckedFromSelect($qsc);
-            });
+            CCR.initStep2Events();
+//            $("#step2 div").each(function(){
+//                var $qsc = $("#" + $(this).attr("id") + " input:checkbox:checked");
+//                CCR.step2RemoveCheckedFromSelect($qsc);
+//            });
 
         }
         if (next.id === "step6") {
@@ -206,7 +210,7 @@ CCR = {
             $("#step2 div").each(function () {
                 if ($(this).css("display") === "block") {
                     var sessionID = "<div class='sessionHeader'>" + $(this).attr("id").replace(/step\d/, "")
-                        .replace(/(\d)/, " $1").replace(/session/, "Session") + ":</div>";
+                        .replace(/(\d)/, " $1").replace(/session/, "Session") + ":&nbsp;</div>";
                     displayActivities += sessionID;
                     $(this).children("input:checkbox:checked").each(function () {
                         displayActivities += $(this).next().html() + "<br/>";
@@ -308,13 +312,16 @@ CCR = {
     initStep1Events:function () {
         $("input:checkbox[name=step1group1]").change(function () {
             var displayBusSection = false;
-            $("input:checkbox").each(function () {
+            $("input:checkbox[name=step1group1]").each(function () {
                 if ($(this).attr("checked")) {
                     var busEnabledSectionsSelected = $(this).val().match(/session2|session3/)? true:false;
                     displayBusSection |= busEnabledSectionsSelected;   //Beware the bitwise OR assignment here :)
                     console.log("Display bus section: " + displayBusSection);
                     $("#step1").find("input:radio[name=step1group1]").removeAttr("checked");
                     CCR.hideErrors();
+                }
+                else{
+                    CCR.clearStep2Selections($(this).val());
                 }
             });
             if(displayBusSection){
@@ -430,6 +437,39 @@ CCR = {
                 }
             }
         });
+    },
+    clearStep2Selections: function(sessionNum){
+        if(sessionNum.match(/session1/)){
+            $("#step2session1").find("input[type=checkbox]").each(function(){
+               $(this).removeAttr("checked");
+            });
+        }
+        else if(sessionNum.match(/session2/)){
+            $("#step2session2").find("input[type=checkbox]").each(function(){
+                $(this).removeAttr("checked");
+            });
+        }
+        else if(sessionNum.match(/session3/)){
+            $("#step2session3").find("input[type=checkbox]").each(function(){
+                $(this).removeAttr("checked");
+            });
+        }
+        else if(sessionNum.match(/session4/)){
+            $("#step2session4").find("input[type=checkbox]").each(function(){
+                $(this).removeAttr("checked");
+            });
+        }
+        else if(sessionNum.match(/session5/)){
+            $("#step2session5").find("input[type=checkbox]").each(function(){
+                $(this).removeAttr("checked");
+            });
+        }
+        else if(sessionNum.match(/session6/)){
+            $("#step2session6").find("input[type=checkbox]").each(function(){
+                $(this).removeAttr("checked");
+            });
+        }
+
     },
     step2RemoveCheckedFromSelect:function($qsc){
         $qsc.each(function () {
@@ -602,6 +642,6 @@ $(document).ready(function () {
     CCR.initNavigation();
     CCR.initRegexPatterns();
     CCR.initValidate();
-    CCR.initStep1Events();
-    CCR.initStep2Events();
+    //CCR.initStep1Events();
+    //CCR.initStep2Events();
 });
