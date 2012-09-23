@@ -344,52 +344,54 @@ CCR = {
     },
     initStep1Events:function () {
         $("input:checkbox[name=step1group1]").change(function () {
-            var displayBusSection = false;
+            CCR.displayBusSectionGroup1 = false;
             $("input:checkbox[name=step1group1]").each(function () {
                 if ($(this).attr("checked")) {
                     var busEnabledSectionsSelected = $(this).val().match(/session2|session3/)? true:false;
-                    displayBusSection |= busEnabledSectionsSelected;   //Beware the bitwise OR assignment here :)
-                    //console.log("Display bus section: " + displayBusSection);
-                    //$("#step1").find("input:radio[name=step1group1]").removeAttr("checked");
+                    CCR.displayBusSectionGroup1 |= busEnabledSectionsSelected;   //Beware the bitwise OR assignment here :)
                     CCR.hideErrors();
                 }
                 else{
                     CCR.clearStep2Selections($(this).val());
                 }
             });
-            if(displayBusSection){
-                $("#step1Section5").fadeIn(300, function () {
-                    var $ht = $("#step1").height();
-                    $("#step1").parent().animate({height:$ht, speed:50});
-                });
-            }
-            else{
-                $("#step1Section5").fadeOut(250, function () {
-                    var $ht = $("#step1").height();
-                    $("#step1").parent().animate({height:$ht, speed:50});
-                });
-            }
+            CCR.toggleBusSection();
         });
-//        $("input:radio[name=step1group1]").change(function () {
-//            if ($(this).attr("checked")) {
-//                $("#step1").find("input:radio[name=step1group1]").removeAttr("checked");
-//                $("#step1").find("input:checkbox[name=step1group1]").removeAttr("checked");
-//                $(this).attr("checked", "checked");
-//                CCR.hideErrors();
-//            }
-//            if ($(this).val().match(/session2|session3|basketball|volleyball/)) {
-//                $("#step1Section5").fadeIn(300, function () {
-//                    var $ht = $("#step1").height();
-//                    $("#step1").parent().animate({height:$ht, speed:50});
-//                });
-//            }
-//            else {
-//                $("#step1Section5").fadeOut(250, function () {
-//                    var $ht = $("#step1").height();
-//                    $("#step1").parent().animate({height:$ht, speed:50});
-//                });
-//            }
-//        });
+        $("input:checkbox[name=step1group2]").change(function () {
+            CCR.displayBusSectionGroup2 = false;
+            $("input:checkbox[name=step1group2]").each(function () {
+                if ($(this).attr("checked")) {
+                    CCR.displayBusSectionGroup2 = true;
+                    CCR.hideErrors();
+                }
+            });
+            CCR.toggleBusSection();
+        });
+        $("input:checkbox[name=step1group3]").change(function () {
+            CCR.displayBusSectionGroup3 = false;
+            $("input:checkbox[name=step1group3]").each(function () {
+                if ($(this).attr("checked")) {
+                    CCR.displayBusSectionGroup3 = true;
+                    CCR.hideErrors();
+                }
+            });
+            CCR.toggleBusSection();
+        });
+
+    },
+    toggleBusSection:function(){
+        if(CCR.displayBusSectionGroup1 || CCR.displayBusSectionGroup2 || CCR.displayBusSectionGroup3){
+            $("#step1Section5").fadeIn(10, function () {
+                var $ht = $("#step1").height();
+                $("#step1").parent().animate({height:$ht, speed:10});
+            });
+        }
+        else{
+            $("#step1Section5").fadeOut(150, function () {
+                var $ht = $("#step1").height();
+                $("#step1").parent().animate({height:$ht, speed:20});
+            });
+        }
     },
     initStep2Display:function () {
         $("#step2 div").hide();
