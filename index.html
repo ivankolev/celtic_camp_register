@@ -46,7 +46,7 @@
         Session 7: &nbsp;&nbsp;
         <input class="startrow" type="radio" name="step1group1" value="group3 basketball"><span>Basketball</span>
         <input type="radio" name="step1group1" value="group3 volleyball"><span>Volleyball</span><br><br>
-        <label for="step1group3CoachName">Coach's Name </label><input class="startrow" type="text"
+        <label for="step1group3CoachName">(optional) Coach's Name </label><input class="startrow" type="text"
                                                                       id="step1group3CoachName"
                                                                       name="step1group3CoachName"/>
     </div>
@@ -112,6 +112,7 @@
         <input type="checkbox" value="session2 tennis"> <span>Tennis</span><br>
         <input type="checkbox" value="session2 soccer"> <span>Soccer</span><br>
         <input type="checkbox" value="session2 out-tripping"> <span>Out-tripping</span><br>
+        <input type="checkbox" value="session2 wilderness survival"> <span>Wilderness Survival</span><br>
     </div>
     <div id="step2session3">
         <h1>Session Three - <span id="session3dates">Thursday, July 19 - Saturday July 28</span></h1>
@@ -133,6 +134,7 @@
         <input type="checkbox" value="session3 tennis"> <span>Tennis</span><br>
         <input type="checkbox" value="session3 soccer"> <span>Soccer</span><br>
         <input type="checkbox" value="session3 out-tripping"> <span>Out-tripping</span><br>
+        <input type="checkbox" value="session3 wilderness survival"> <span>Wilderness Survival</span><br>
     </div>
     <div id="step2session4">
         <h1>Session Four - <span id="session4dates">Sunday, July 29 - Saturday August 4</span></h1>
@@ -154,6 +156,7 @@
         <input type="checkbox" value="session4 tennis"> <span>Tennis</span><br>
         <input type="checkbox" value="session4 soccer"> <span>Soccer</span><br>
         <input type="checkbox" value="session4 volleyball"> <span>Volleyball</span><br>
+        <input type="checkbox" value="session4 wilderness survival"> <span>Wilderness Survival</span><br>
     </div>
     <div id="step2session5">
         <h1>Session Five - <span id="session5dates">Sunday, August 5 - Saturday August 11</span></h1>
@@ -218,24 +221,29 @@
     <input class="startrow required" type="text" name="step3City" id="step3City" title="City is required">
     <input class="required" type="text" name="step3Province" id="step3Province" title="Province is required">
     <input type="text" name="step3PostalCode" id="step3PostalCode"><br>
-    <label  style="padding-right: 128px" for="step3SchoolAttended">School Attended</label>
+    <label  style="padding-right: 128px" for="step3SchoolAttended">(optional) School Attended</label>
     <label for="step3CabinMateRequested">Cabin Mate Requested (1 only)</label><br/>
-    <input class="startrow required" type="text" name="step3SchoolAttended" id="step3SchoolAttended" title="Please specify School Attended">
+    <input class="startrow" type="text" name="step3SchoolAttended" id="step3SchoolAttended" title="Please specify School Attended">
     <input type="text" name="step3CabinMateRequested" id="step3CabinMateRequested">
 </li>
 <li class="step" id="step4"><span class="stepName">Health Information</span>
     <span class="stepCount">Step 4 of 6</span><br>
     <div class="dottedBorder"></div>
+    <p>
+        Please provide as much information below as possible. If you're unable to complete any fields, please feel free
+        to proceed with the rest of the registration process. We require all the information listed below, but can
+        collect it from you between now and the start of camp.
+    </p>
     <label style="padding-right: 142px" for="step4FamilyDoctor">Family Doctor</label>
     <label for="step4FamilyDoctorTelephone">Telephone</label>
     <br/>
-    <input class="startrow required" type="text" name="step4FamilyDoctor" id="step4FamilyDoctor" title="Family Doctor is required">
+    <input class="startrow" type="text" name="step4FamilyDoctor" id="step4FamilyDoctor" title="Family Doctor is required">
     <input type="text" name="step4FamilyDoctorTelephone" id="step4FamilyDoctorTelephone">
     <div class="solidBorder"></div>
     <label style="padding-right: 142px" for="step4HealthCard#">Health Card #</label>
     <label for="step4DateOfLastTetanusShot">Date of Last Tetanus Shot</label>
     <br/>
-    <input class="startrow required" type="text" name="step4HealthCard#" id="step4HealthCard#" title="Health Card # is required">
+    <input class="startrow" type="text" name="step4HealthCard#" id="step4HealthCard#" title="Health Card # is required">
     <input type="text" name="step4DateOfLastTetanusShot" id="step4DateOfLastTetanusShot">
     <br/>
     <label style="padding-right: 232px" for="step4MedicalHistory">Medical History</label>

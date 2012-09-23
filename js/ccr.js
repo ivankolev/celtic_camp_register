@@ -2,8 +2,6 @@ var CCR;
 CCR = {
     initSlider:function () {
         CCR.sudoSlider = $("#slider").cycle({
-//            prev:'#prev',
-//            next:'#next',
             timeout:0,
             speed:150,
             fit:1,
@@ -30,7 +28,6 @@ CCR = {
                 $("#slider").cycle("next");
             }
         });
-
     },
     validateStep:function (step) {
         var result = false;
@@ -52,7 +49,6 @@ CCR = {
         return result;
     },
     onAfter:function (curr, next, opts, fwd) {
-        console.log("After going to" + next.id);
         if (next.id === "step1" || next.id === "step6" || next.id === "step7") {
             $("#prev").css("visibility", "hidden");
         }
@@ -67,7 +63,6 @@ CCR = {
         }
     },
     onBefore:function (curr, next, opts, fwd) {
-        console.log("Before going to" + next.id);
         if(next.id === "step1"){
             CCR.initStep1Events();
         }
@@ -75,11 +70,10 @@ CCR = {
             CCR.initStep2Display();
             CCR.initStep2Select();
             CCR.initStep2Events();
-//            $("#step2 div").each(function(){
-//                var $qsc = $("#" + $(this).attr("id") + " input:checkbox:checked");
-//                CCR.step2RemoveCheckedFromSelect($qsc);
-//            });
-
+            $("#step2 div").each(function(){
+                var $qsc = $("#" + $(this).attr("id") + " input:checkbox:checked");
+                CCR.step2RemoveCheckedFromSelect($qsc);
+            });
         }
         if (next.id === "step6") {
             CCR.populateStep6();
@@ -102,10 +96,10 @@ CCR = {
             CCR.displayErrors("Please select at least one session above!");
             return false;
         }
-        else if ($("#step1Section3 input:checked").length && ($("#step1group3CoachName").val().length === 0)) {
-            CCR.displayErrors("Please enter Coach's Name");
-            return false;
-        }
+//        else if ($("#step1Section3 input:checked").length && ($("#step1group3CoachName").val().length === 0)) {
+//            CCR.displayErrors("Please enter Coach's Name");
+//            return false;
+//        }
         else {
             CCR.hideErrors();
             return true;
@@ -316,7 +310,7 @@ CCR = {
                 if ($(this).attr("checked")) {
                     var busEnabledSectionsSelected = $(this).val().match(/session2|session3/)? true:false;
                     displayBusSection |= busEnabledSectionsSelected;   //Beware the bitwise OR assignment here :)
-                    console.log("Display bus section: " + displayBusSection);
+                    //console.log("Display bus section: " + displayBusSection);
                     $("#step1").find("input:radio[name=step1group1]").removeAttr("checked");
                     CCR.hideErrors();
                 }
@@ -362,7 +356,7 @@ CCR = {
         $("#step2 div").hide();
         $("#step2notneeded").hide();
         $("input:checkbox[name=step1group1]:checked").each(function () {
-            console.log($(this).attr("value"));
+            //console.log($(this).attr("value"));
             if ($(this).attr("value") === "group1 session1") {
                 $("#step2session1").show();
             }
@@ -486,7 +480,7 @@ CCR = {
                     }
                 }
             });
-            console.log($id);
+            //console.log($id);
         });
     },
     step2SelectAlternate: function (option){
@@ -516,7 +510,7 @@ CCR = {
                     $(this).show();
                 }
             });
-            console.log($id);
+            //console.log($id);
         });
     },
     step2TotalAllowedActivities:function () {

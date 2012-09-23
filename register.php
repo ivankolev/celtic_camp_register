@@ -11,7 +11,7 @@ $part2 = str_replace("<br>", "\r\n",$_POST['step6BusTransportationConfirmText'])
 $part2 = strip_tags($part2);
 $part3 = str_replace("<br>", "\r\n",$_POST['step6ActivitiesConfirmText']);
 $part3 = str_replace("</div>", "\r\n", $part3);
-$part3 = str_replace('<div class="sessionHeader">', "", $part3);
+$part3 = str_replace('<div class=`sessionHeader`>', "", $part3);
 $part4 = str_replace("<br>", "\r\n",$_POST['step6CamperInfoConfirmText']);
 $part4 = strip_tags($part4);
 $part5 = str_replace("<br>", "\r\n",$_POST['step6HealthInfoConfirmText']);
