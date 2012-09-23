@@ -161,26 +161,65 @@ CCR = {
         //clear all previously generated hidden fields:
         $("input[type='hidden']").remove();
         $(".step6generatedInfo").each(function(i){
-            var textID = $(this).parent().attr("id") + "Text";
+            var parentID = $(this).parent().attr("id");
+            var textID = ""
+            if(parentID === "step6CampSessionConfirm"){
+                textID = $(this).parent().attr("id") + "Text" + i;
+            }
+            else{
+                textID = $(this).parent().attr("id") + "Text";
+            }
             $("#register_form").append("<input type='hidden'" +
-                " id='"+textID+"' name='"+textID+"' value='"+$(this).html().replace(/"|'/g, "`") +"'/>");
+                " id='"+textID+"' name='"+textID+"' value='"+$(this).html().replace(/"|'/g, "`").
+                replace(/Session/g, "<br>Session") +"'/>");
 
         });
     },
     populateCampSession:function () {
-        var campSession = $("#step1 input[name=step1group1]:checked").siblings("h2").html();
-        var campSessionOrdinal = "";
-        $("#step1 input[name=step1group1]:checked").each(function () {
-            campSessionOrdinal += "<br/>" + $(this).val().split(" ")[1].replace(/(\d)/g, " $1 ");
-        });
-        $("#step6CampSessionConfirm")
-            .append("<div class='step6generatedInfo'><br/>" + campSession + campSessionOrdinal + "</div>");
+        if($("#step1 input[name=step1group1]:checked")){//Summer Camp
+            var campSession = $("#step1 input[name=step1group1]:checked").siblings("h2").html();
+            var campSessionOrdinal = "";
+            $("#step1 input[name=step1group1]:checked").each(function () {
+                campSessionOrdinal += "<br/>" + $(this).val().split(" ")[1].replace(/(\d)/g, " $1 ");
+            });
+            $("#step6CampSessionConfirm")
+                .append("<div class='step6generatedInfo'><br/>" + campSession + campSessionOrdinal + "</div>");
+        }
+        if($("#step1 input[name=step1group2]:checked")){//Leadership Camp
+            var campSession = $("#step1 input[name=step1group2]:checked").siblings("h2").html();
+            var campSessionOrdinal = "";
+            $("#step1 input[name=step1group2]:checked").each(function () {
+                campSessionOrdinal += "<br/>" + $(this).val().split(" ")[1].replace(/(\d)/g, " $1 ");
+            });
+            $("#step6CampSessionConfirm")
+                .append("<div class='step6generatedInfo'><br/>" + campSession + campSessionOrdinal + "</div>");
+        }
+        if($("#step1 input[name=step1group3]:checked")){//Sports Camp
+            var campSession = $("#step1 input[name=step1group3]:checked").siblings("h2").html();
+            var campSessionOrdinal = "";
+            $("#step1 input[name=step1group3]:checked").each(function () {
+                campSessionOrdinal += "<br/>" + $(this).val().split(" ")[1].replace(/(\d)/g, " $1 ");
+            });
+            $("#step6CampSessionConfirm")
+                .append("<div class='step6generatedInfo'><br/>" + campSession + campSessionOrdinal + "</div>");
+        }
+        if($("#step1 input[name=step1group4]:checked")){//Killarney canoe Camp
+            var campSession = $("#step1 input[name=step1group4]:checked").siblings("h2").html();
+            var campSessionOrdinal = "";
+            $("#step1 input[name=step1group4]:checked").each(function () {
+                campSessionOrdinal += "<br/>" + $(this).val().split(" ")[1].replace(/(\d)/g, " $1 ");
+            });
+            $("#step6CampSessionConfirm")
+                .append("<div class='step6generatedInfo'><br/>" + campSession + campSessionOrdinal + "</div>");
+        }
+
+
         if (campSessionOrdinal.match(/basketball/) || campSessionOrdinal.match(/volleyball/)) {
             $("#step6CampSessionConfirm").append("<br/>Coach's Name: " + $("#step1group3CoachName").val());
         }
     },
     populateBusTransport:function () {
-        var busTransport = $("#step1 input[name=step1group2]:checked");
+        var busTransport = $("#step1 input[name=step1group5]:checked");
         var formattedOutput = "";
         if (busTransport.length) {
             $("#step6BusTransportationConfirm").prev(".solidBorder").show();
@@ -214,7 +253,7 @@ CCR = {
                     displayActivities += "Alternate:" + $(this).children("select").children("option:selected").html();
                 }
             });
-            $("#step6ActivitiesConfirm").append("<div class='step6generatedInfo'>" + displayActivities + "</div");
+            $("#step6ActivitiesConfirm").append("<div class='step6generatedInfo'>" + displayActivities + "</div>");
         }
         else {
             $("#step6ActivitiesConfirm").prev(".solidBorder").hide();
@@ -234,7 +273,7 @@ CCR = {
         if (cabinMateReq.length) {
             camperInfo += "Cabin Mate Requested: " + cabinMateReq;
         }
-        $("#step6CamperInfoConfirm").append("<div class='step6generatedInfo'>" + camperInfo + "</div");
+        $("#step6CamperInfoConfirm").append("<div class='step6generatedInfo'>" + camperInfo + "</div>");
 
     },
     populateHealthInfo:function () {
@@ -255,7 +294,7 @@ CCR = {
         if(medications.length){
             healthInfo += "Medications taken: " + medications + "<br/>";
         }
-        $("#step6HealthInfoConfirm").append("<div class='step6generatedInfo'>" + healthInfo + "</div");
+        $("#step6HealthInfoConfirm").append("<div class='step6generatedInfo'>" + healthInfo + "</div>");
     },
     populateParentInfo:function () {
         var parentInfo = "";
@@ -290,7 +329,7 @@ CCR = {
         if(referer.length){
             parentInfo += "How did you hear about camp celtic: " + referer + "<br/>";
         }
-        $("#step6ParentInfoConfirm").append("<div class='step6generatedInfo'>" + parentInfo + "</div");
+        $("#step6ParentInfoConfirm").append("<div class='step6generatedInfo'>" + parentInfo + "</div>");
     },
     displayErrors:function (errorMessage) {
         $("#errors").show();
@@ -311,7 +350,7 @@ CCR = {
                     var busEnabledSectionsSelected = $(this).val().match(/session2|session3/)? true:false;
                     displayBusSection |= busEnabledSectionsSelected;   //Beware the bitwise OR assignment here :)
                     //console.log("Display bus section: " + displayBusSection);
-                    $("#step1").find("input:radio[name=step1group1]").removeAttr("checked");
+                    //$("#step1").find("input:radio[name=step1group1]").removeAttr("checked");
                     CCR.hideErrors();
                 }
                 else{
@@ -331,26 +370,26 @@ CCR = {
                 });
             }
         });
-        $("input:radio[name=step1group1]").change(function () {
-            if ($(this).attr("checked")) {
-                $("#step1").find("input:radio[name=step1group1]").removeAttr("checked");
-                $("#step1").find("input:checkbox[name=step1group1]").removeAttr("checked");
-                $(this).attr("checked", "checked");
-                CCR.hideErrors();
-            }
-            if ($(this).val().match(/session2|session3|basketball|volleyball/)) {
-                $("#step1Section5").fadeIn(300, function () {
-                    var $ht = $("#step1").height();
-                    $("#step1").parent().animate({height:$ht, speed:50});
-                });
-            }
-            else {
-                $("#step1Section5").fadeOut(250, function () {
-                    var $ht = $("#step1").height();
-                    $("#step1").parent().animate({height:$ht, speed:50});
-                });
-            }
-        });
+//        $("input:radio[name=step1group1]").change(function () {
+//            if ($(this).attr("checked")) {
+//                $("#step1").find("input:radio[name=step1group1]").removeAttr("checked");
+//                $("#step1").find("input:checkbox[name=step1group1]").removeAttr("checked");
+//                $(this).attr("checked", "checked");
+//                CCR.hideErrors();
+//            }
+//            if ($(this).val().match(/session2|session3|basketball|volleyball/)) {
+//                $("#step1Section5").fadeIn(300, function () {
+//                    var $ht = $("#step1").height();
+//                    $("#step1").parent().animate({height:$ht, speed:50});
+//                });
+//            }
+//            else {
+//                $("#step1Section5").fadeOut(250, function () {
+//                    var $ht = $("#step1").height();
+//                    $("#step1").parent().animate({height:$ht, speed:50});
+//                });
+//            }
+//        });
     },
     initStep2Display:function () {
         $("#step2 div").hide();
@@ -554,11 +593,11 @@ CCR = {
                     pattern:CCR.regexPostalCode
                 },
                 step4FamilyDoctorTelephone:{
-                    required:true,
+                    required:false,
                     phoneUS:true
                 },
                 step4DateOfLastTetanusShot:{
-                    required:true,
+                    required:false,
                     dateITA:true
                 },
                 step5HomeTelephone1:{
@@ -629,8 +668,6 @@ CCR = {
         $("#slider").cycle("next");
     }
 };
-
-
 $(document).ready(function () {
     CCR.initSlider();
     CCR.initNavigation();

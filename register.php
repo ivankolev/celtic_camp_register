@@ -5,8 +5,14 @@
 //echo $_POST['step6CamperInfoConfirmText'];
 //echo $_POST['step6HealthInfoConfirmText'];
 //echo $_POST['step6ParentInfoConfirmText'];
-$part1 = str_replace("<br>", "\r\n",$_POST['step6CampSessionConfirmText']);
-$part1 = strip_tags($part1);
+$part1_0 = str_replace("<br>", "\r\n",$_POST['step6CampSessionConfirmText0']);
+$part1_0 = strip_tags($part1_0);
+$part1_1 = str_replace("<br>", "\r\n",$_POST['step6CampSessionConfirmText1']);
+$part1_1 = strip_tags($part1_1);
+$part1_2 = str_replace("<br>", "\r\n",$_POST['step6CampSessionConfirmText2']);
+$part1_2 = strip_tags($part1_2);
+$part1_3 = str_replace("<br>", "\r\n",$_POST['step6CampSessionConfirmText3']);
+$part1_3 = strip_tags($part1_3);
 $part2 = str_replace("<br>", "\r\n",$_POST['step6BusTransportationConfirmText']);
 $part2 = strip_tags($part2);
 $part3 = str_replace("<br>", "\r\n",$_POST['step6ActivitiesConfirmText']);
@@ -25,7 +31,7 @@ $toIvan  = 'ivan.kolev@gmail.com';
 $toScott = 'scott@scottmcfadyen.com';
 $toGeoff = 'higeoffyates@hotmail.com';
 $subject = 'Online Registration Submission';
-$message = "Session Information:\r\n".$part1
+$message = "Session Information:\r\n".$part1_0."\r\n".$part1_1."\r\n".$part1_2."\r\n".$part1_3
     ."\r\n".$part2.$separator.
     "\r\nActivities:\r\n".$part3."\r\n".$separator.
     "\r\nCamper Information:\r\n".$part4."\r\n".$separator.
