@@ -345,37 +345,114 @@ CCR = {
     initStep1Events:function () {
         $("input:checkbox[name=step1group1]").change(function () {
             CCR.displayBusSectionGroup1 = false;
+            var session5or6checked = 0;
+
             $("input:checkbox[name=step1group1]").each(function () {
                 if ($(this).attr("checked")) {
                     var busEnabledSectionsSelected = $(this).val().match(/session2|session3/)? true:false;
-                    CCR.displayBusSectionGroup1 |= busEnabledSectionsSelected;   //Beware the bitwise OR assignment here :)
+                    CCR.displayBusSectionGroup1 |= busEnabledSectionsSelected;//Beware the bitwise OR assignment here :)
                     CCR.hideErrors();
+                    //if session 2 or 3 selected, disable corresponding one in Leadership camp:
+                    if($(this).val().match(/session2/)){
+                        var a = $("input:checkbox[name=step1group2]");
+                        $(a[0]).attr("disabled", "disabled");
+                    }
+                    if($(this).val().match(/session3/)){
+                        var a = $("input:checkbox[name=step1group2]");
+                        $(a[1]).attr("disabled", "disabled");
+                    }
+                    if($(this).val().match(/session5|session6/)){
+                        $("input:checkbox[name=step1group4]").attr("disabled", "disabled");
+                    }
                 }
                 else{
+                    if($(this).val().match(/session2/)){
+                        var a = $("input:checkbox[name=step1group2]");
+                        $(a[0]).removeAttr("disabled");
+                    }
+                    if($(this).val().match(/session3/)){
+                        var a = $("input:checkbox[name=step1group2]");
+                        $(a[1]).removeAttr("disabled");
+                    }
+                    if($(this).val().match(/session5/)){
+                        session5or6checked++;
+                    }
+                    if($(this).val().match(/session6/)){
+                        session5or6checked++;
+                    }
                     CCR.clearStep2Selections($(this).val());
                 }
             });
+            console.log(session5or6checked);
+            if(session5or6checked === 2){
+                $("input:checkbox[name=step1group4]").removeAttr("disabled");
+            }
             CCR.toggleBusSection();
         });
         $("input:checkbox[name=step1group2]").change(function () {
             CCR.displayBusSectionGroup2 = false;
             $("input:checkbox[name=step1group2]").each(function () {
                 if ($(this).attr("checked")) {
+                    if($(this).val().match(/session2/)){
+                        var a = $("input:checkbox[name=step1group1]");
+                        $(a[1]).attr("disabled", "disabled");
+                    }
+                    if($(this).val().match(/session3/)){
+                        var a = $("input:checkbox[name=step1group1]");
+                        $(a[2]).attr("disabled", "disabled");
+                    }
                     CCR.displayBusSectionGroup2 = true;
                     CCR.hideErrors();
+                }
+                else {
+                    if($(this).val().match(/session2/)){
+                        var a = $("input:checkbox[name=step1group1]");
+                        $(a[1]).removeAttr("disabled");
+                    }
+                    if($(this).val().match(/session3/)){
+                        var a = $("input:checkbox[name=step1group1]");
+                        $(a[2]).removeAttr("disabled");
+                    }
                 }
             });
             CCR.toggleBusSection();
         });
         $("input:checkbox[name=step1group3]").change(function () {
             CCR.displayBusSectionGroup3 = false;
-            $("input:checkbox[name=step1group3]").each(function () {
+            var sportcamps = $("input:checkbox[name=step1group3]");
+            sportcamps.each(function () {
                 if ($(this).attr("checked")) {
+                    if($(this).val().match(/volleyball/)){
+                        $(sportcamps[0]).attr("disabled", "disabled");
+                    }
+                    if($(this).val().match(/basketball/)){
+                        $(sportcamps[1]).attr("disabled", "disabled");
+                    }
                     CCR.displayBusSectionGroup3 = true;
                     CCR.hideErrors();
                 }
+                else {
+                    if($(this).val().match(/volleyball/)){
+                        $(sportcamps[0]).removeAttr("disabled");
+                    }
+                    if($(this).val().match(/basketball/)){
+                        $(sportcamps[1]).removeAttr("disabled");
+                    }
+                }
             });
             CCR.toggleBusSection();
+        });
+        $("input:checkbox[name=step1group4]").change(function(){
+          if($(this).attr("checked")){
+            var summercamps = $("input:checkbox[name=step1group1]");
+              $(summercamps[4]).attr("disabled", "disabled");
+              $(summercamps[5]).attr("disabled", "disabled");
+          }
+          else{
+              var summercamps = $("input:checkbox[name=step1group1]");
+              $(summercamps[4]).removeAttr("disabled");
+              $(summercamps[5]).removeAttr("disabled");
+          }
         });
 
     },
