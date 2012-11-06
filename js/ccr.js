@@ -176,7 +176,7 @@ CCR = {
         });
     },
     populateCampSession:function () {
-        if($("#step1 input[name=step1group1]:checked")){//Summer Camp
+        if($("#step1 input[name=step1group1]:checked").length !== 0){//Summer Camp
             var campSession = $("#step1 input[name=step1group1]:checked").siblings("h2").html();
             var campSessionOrdinal = "";
             $("#step1 input[name=step1group1]:checked").each(function () {
@@ -185,7 +185,7 @@ CCR = {
             $("#step6CampSessionConfirm")
                 .append("<div class='step6generatedInfo'><br/>" + campSession + campSessionOrdinal + "</div>");
         }
-        if($("#step1 input[name=step1group2]:checked")){//Leadership Camp
+        if($("#step1 input[name=step1group2]:checked").length !== 0){//Leadership Camp
             var campSession = $("#step1 input[name=step1group2]:checked").siblings("h2").html();
             var campSessionOrdinal = "";
             $("#step1 input[name=step1group2]:checked").each(function () {
@@ -194,7 +194,7 @@ CCR = {
             $("#step6CampSessionConfirm")
                 .append("<div class='step6generatedInfo'><br/>" + campSession + campSessionOrdinal + "</div>");
         }
-        if($("#step1 input[name=step1group3]:checked")){//Sports Camp
+        if($("#step1 input[name=step1group3]:checked").length !== 0){//Sports Camp
             var campSession = $("#step1 input[name=step1group3]:checked").siblings("h2").html();
             var campSessionOrdinal = "";
             $("#step1 input[name=step1group3]:checked").each(function () {
@@ -203,7 +203,7 @@ CCR = {
             $("#step6CampSessionConfirm")
                 .append("<div class='step6generatedInfo'><br/>" + campSession + campSessionOrdinal + "</div>");
         }
-        if($("#step1 input[name=step1group4]:checked")){//Killarney canoe Camp
+        if($("#step1 input[name=step1group4]:checked").length !== 0){//Killarney canoe Camp
             var campSession = $("#step1 input[name=step1group4]:checked").siblings("h2").html();
             var campSessionOrdinal = "";
             $("#step1 input[name=step1group4]:checked").each(function () {
