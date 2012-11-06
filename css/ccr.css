@@ -56,6 +56,11 @@ h2 {
     font-family: "Trebuchet MS";
     font-size:19px;
 }
+.heading2 {
+    color: #3f4317;
+    font-family: "Trebuchet MS";
+    font-size: 19px;
+}
 a {
     color: #3d4100;
 }
@@ -190,7 +195,7 @@ input.startrow {
     font-weight: normal;
     font-size: 18px;
 }
-#step2 h2 {
+#step2 .heading2 {
     font-weight: normal;
     padding-bottom: 5px;
     padding-top: 5px;
