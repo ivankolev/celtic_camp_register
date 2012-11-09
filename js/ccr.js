@@ -202,6 +202,10 @@ CCR = {
             });
             $("#step6CampSessionConfirm")
                 .append("<div class='step6generatedInfo'><br/>" + campSession + campSessionOrdinal + "</div>");
+            var coachName = $("#step1group3CoachName").val();
+            if(coachName !== ""){
+                $("#step6CampSessionConfirm").append("<br/>Coach's Name: " + $("#step1group3CoachName").val());
+            }
         }
         if($("#step1 input[name=step1group4]:checked").length !== 0){//Killarney canoe Camp
             var campSession = $("#step1 input[name=step1group4]:checked").siblings("h2").html();
@@ -211,11 +215,6 @@ CCR = {
             });
             $("#step6CampSessionConfirm")
                 .append("<div class='step6generatedInfo'><br/>" + campSession + campSessionOrdinal + "</div>");
-        }
-
-
-        if (campSessionOrdinal.match(/basketball/) || campSessionOrdinal.match(/volleyball/)) {
-            $("#step6CampSessionConfirm").append("<br/>Coach's Name: " + $("#step1group3CoachName").val());
         }
     },
     populateBusTransport:function () {
