@@ -162,16 +162,17 @@ CCR = {
         $("input[type='hidden']").remove();
         $(".step6generatedInfo").each(function(i){
             var parentID = $(this).parent().attr("id");
-            var textID = ""
+            var textID = "";
             if(parentID === "step6CampSessionConfirm"){
                 textID = $(this).parent().attr("id") + "Text" + i;
             }
             else{
                 textID = $(this).parent().attr("id") + "Text";
             }
+            var payload =  $(this).html().replace(/"|'/g, "`").replace(/Session/g, "<br>Session");
+            var encoded_payload = encodeURIComponent(payload);
             $("#register_form").append("<input type='hidden'" +
-                " id='"+textID+"' name='"+textID+"' value='"+$(this).html().replace(/"|'/g, "`").
-                replace(/Session/g, "<br>Session") +"'/>");
+                " id='"+textID+"' name='"+textID+"' value='"+ encoded_payload +"'/>");
 
         });
     },
@@ -721,6 +722,7 @@ CCR = {
                 }
             },
             submitHandler: function(form) {
+
                 jQuery(form).ajaxSubmit({
                     target: "#register_form_result",
                     success: CCR.showResponse

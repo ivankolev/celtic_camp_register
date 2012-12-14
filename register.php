@@ -67,5 +67,5 @@ $confirmEmail = $_POST["step5Email1"];
 
 mail($confirmEmail, $confirmSubject, $confirmMessage, $headers);
 mail($toIvan, $subject, $message, $headers);
-mail($toScott, $subject, $message, $headers);
-mail($toGeoff, $subject, $message, $headers);
+//mail($toScott, $subject, $message, $headers);
+//mail($toGeoff, $subject, $message, $headers);
